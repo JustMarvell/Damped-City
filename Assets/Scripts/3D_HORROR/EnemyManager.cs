@@ -1,0 +1,142 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
+
+public class EnemyManager : MonoBehaviour
+{
+    public static EnemyManager instance;
+
+
+    public GameObject enemyPrefab;
+    public Transform[] enemySpawnPoint;
+    public List<EnemyAI_Horror> enemies;
+
+    [Space]
+
+    public bool isChasingPlayer;
+    public bool hasAttackedPlayer = false;
+
+    EventInstance chasingSound;
+    EventInstance attackingSound;
+    PLAYBACK_STATE pLAYBACK_STATE;
+
+    public bool enemySpawned = false;
+    public float spawnProgress = 0;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    void Start()
+    {
+        chasingSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.ENEMY_Chasing);
+        chasingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+        attackingSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.ENEMY_Attacking);
+        attackingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    public void ActivateEnemy()
+    {
+        foreach (EnemyAI_Horror enemy in enemies)
+        {
+            enemy.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnEnemyChase()
+    {
+        if (isChasingPlayer)
+        {
+
+            chasingSound.getPlaybackState(out pLAYBACK_STATE);
+
+            if (pLAYBACK_STATE.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                chasingSound.start();
+            }
+        }
+        else
+        {
+            chasingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    public void OnEnemyAttack()
+    {
+        if (!hasAttackedPlayer)
+        {
+            chasingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            hasAttackedPlayer = true;
+            attackingSound.start();
+        }
+    }
+
+    public void SpawnEnemy(int enemyCount)
+    {
+        if (!enemySpawned)
+        {
+            GameObject rAlert = GameObject.FindGameObjectWithTag("runAlert");
+
+            // do stuff
+            for (int y = 0; y < enemyCount; y++)
+            {
+                enemies.Add(Instantiate(enemyPrefab).GetComponent<EnemyAI_Horror>());
+            }
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].runAlert = rAlert;
+
+                enemies[i].transform.parent = enemySpawnPoint[i];
+                enemies[i].transform.position = Vector3.zero;
+                enemies[i].transform.localPosition = Vector3.zero;
+                enemies[i].gameObject.SetActive(false);
+
+                spawnProgress = i / enemies.Count;
+            }
+
+
+            rAlert.SetActive(false);
+            // finished doing stuff
+            enemySpawned = true;
+        }
+    }
+
+    public void ResetAndDisableEnemy()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].transform.position = Vector3.zero;
+            enemies[i].transform.localPosition = Vector3.zero;
+
+            enemies[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void ResetAndEnableEnemy()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].transform.position = Vector3.zero;
+            enemies[i].transform.localPosition = Vector3.zero;
+
+            enemies[i].gameObject.SetActive(true);
+        }
+    }
+
+    public void MayhemMode()
+    {
+        enemies[0].runAlert.SetActive(true);
+        foreach (EnemyAI_Horror _ in enemies)
+        {
+            _.useLineOfSight = false;
+            _.obstacleMask = 0;
+            _.fieldOfViewAngle = 360;
+            _.lineOfSightDistance = 300;
+        }
+    }
+}

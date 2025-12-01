@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &164341470565818080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164341470565818082}
+  - component: {fileID: 164341470565818081}
+  - component: {fileID: 164341470565818083}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &164341470565818082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164341470565818080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &164341470565818081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164341470565818080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6d1caf2f273e270919baa9642272b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 0.671
+  musicVolume: 0.553
+  sfxVolume: 0.771
+  uiVolume: 0.797
+  masterSetting: {fileID: 11400000, guid: 6ee6f1d104e808909a0246a57fba2c3f, type: 2}
+  musicSetting: {fileID: 11400000, guid: 9b6119ab3a991502f8b9ede88bc2b8b6, type: 2}
+  sfxSetting: {fileID: 11400000, guid: dadf15ecf6f2a6adeba871ba24d22593, type: 2}
+  uiSetting: {fileID: 11400000, guid: a57beb8ddfa4c9d99bb4e6afd9d2e03f, type: 2}
+--- !u!114 &164341470565818083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164341470565818080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2ae6a8fcb48920985b42e50f873570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <UI_ButtonClick>k__BackingField:
+    Guid:
+      Data1: -2078893616
+      Data2: 1243095412
+      Data3: 642501255
+      Data4: -1722954995
+    Path: event:/UI/Button_Click
+  <UI_ButtonHover>k__BackingField:
+    Guid:
+      Data1: -39068746
+      Data2: 1123874475
+      Data3: -1173545070
+      Data4: -59400005
+    Path: event:/UI/Button_Hover
+  <UI_SliderChanged>k__BackingField:
+    Guid:
+      Data1: -1699463906
+      Data2: 1341478904
+      Data3: -950281598
+      Data4: 937611383
+    Path: event:/UI/Slider_Changed
+  <QUE_GameStartQue>k__BackingField:
+    Guid:
+      Data1: -1931558644
+      Data2: 1282935946
+      Data3: 344005009
+      Data4: 715646849
+    Path: event:/AtmosphereQue/Short_Rising_Que
+  <ATMOSPHERE_1>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <MUSIC_MainMenu>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <INTERACTABLE_DefaultInteractingSound>k__BackingField:
+    Guid:
+      Data1: -487232904
+      Data2: 1277721485
+      Data3: -1473633637
+      Data4: -1360340562
+    Path: event:/SFX/Interact_Default
+  <INTERACTABLE_FailedInteractingSound>k__BackingField:
+    Guid:
+      Data1: -1968937732
+      Data2: 1303838355
+      Data3: 1955555001
+      Data4: 150462664
+    Path: event:/SFX/Interact_Failed
+  <INTERACTABLE_MoneyBagPickup>k__BackingField:
+    Guid:
+      Data1: 2058407170
+      Data2: 1152356716
+      Data3: 1442276495
+      Data4: -1643612655
+    Path: event:/SFX/Interact_MoneyBag
+  <DIALOGUE_EnterDialogue>k__BackingField:
+    Guid:
+      Data1: -235585311
+      Data2: 1210650254
+      Data3: 1139458726
+      Data4: -647343953
+    Path: event:/SFX/Dialogue_Enter
+  <DIALOGUE_CloseDialogue>k__BackingField:
+    Guid:
+      Data1: 1202144354
+      Data2: 1172690291
+      Data3: -1657567815
+      Data4: 1726190030
+    Path: event:/SFX/Dialogue_Close
+  <DIALOGUE_DialogueTyping>k__BackingField:
+    Guid:
+      Data1: -307511707
+      Data2: 1162414448
+      Data3: 1837264310
+      Data4: -36220401
+    Path: event:/SFX/Dialogue_Typing
+  <DIALOGUE_SkipDialogue>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <PLAYER_Footsteps>k__BackingField:
+    Guid:
+      Data1: -441899195
+      Data2: 1284564473
+      Data3: -1619093320
+      Data4: -580709689
+    Path: event:/SFX/Footsteps
+  <PLAYER_Sprintsteps>k__BackingField:
+    Guid:
+      Data1: 1919951030
+      Data2: 1110527542
+      Data3: -453775199
+      Data4: -310168457
+    Path: event:/SFX/RunSteps
+  <ENEMY_Chasing>k__BackingField:
+    Guid:
+      Data1: 1934016491
+      Data2: 1264200655
+      Data3: 1731011227
+      Data4: 427430099
+    Path: event:/SFX/EnemyChase
+  <ENEMY_Attacking>k__BackingField:
+    Guid:
+      Data1: -865964234
+      Data2: 1244258125
+      Data3: -1307755377
+      Data4: -1447776536
+    Path: event:/SFX/EnemyAttack

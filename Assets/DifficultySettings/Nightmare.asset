@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e595a47ab350adb09af72426b691a18b, type: 3}
+  m_Name: Nightmare
+  m_EditorClassIdentifier: 
+  name: Nightmare
+  enemyCount: 7
+  enemyNormalSpeed: 4
+  enemySprintSpeed: 9
+  enemyLineOfSightDistance: 30
+  enemyDetectionRadius: 30
+  collectableCount: 25
+  playerNormalSpeed: 5
+  playerSprintSpeed: 9
+  staminaRegenRate: 10
+  staminaConsumtionRate: 30
