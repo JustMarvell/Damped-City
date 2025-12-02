@@ -107,6 +107,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  <MUSIC_LevelScene>k__BackingField:
+    Guid:
+      Data1: 983040074
+      Data2: 1105437168
+      Data3: -302599012
+      Data4: 493751855
+    Path: event:/Music/Level/LevelMusic
   <INTERACTABLE_DefaultInteractingSound>k__BackingField:
     Guid:
       Data1: -487232904
