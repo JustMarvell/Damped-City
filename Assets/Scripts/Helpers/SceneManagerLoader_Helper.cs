@@ -60,6 +60,8 @@ public class SceneManagerLoader_Helper : MonoBehaviour
     {
         Time.timeScale = 1;
 
+        LevelMusic_Helper.instance.StopMusic();
+
         loadingScreenObject.SetActive(true);
         progressBar.value = 0;
 

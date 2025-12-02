@@ -263,6 +263,7 @@ public class EnemyAI_Horror : MonoBehaviour
             GameObject.FindGameObjectWithTag("charCam")?.SetActive(false);
         
         playerTransform.GetComponent<StateMachine_3D>().currentState.StopPlayerSounds();
+        enemyManager.StopChasingSound();
 
         playerTransform.gameObject.SetActive(false);
         captureCamera.SetActive(true);

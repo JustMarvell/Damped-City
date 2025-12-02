@@ -22,6 +22,7 @@ public class FMODEvents : MonoBehaviour
     
     [field : Header("Music Sounds")]
     [field : SerializeField] public EventReference MUSIC_MainMenu { get; private set; }
+    [field : SerializeField] public EventReference MUSIC_LevelScene { get; private set; }
 
 
     [field : Header("Interactable Sound")]
