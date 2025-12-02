@@ -75,6 +75,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void StopChasingSound()
+    {
+        chasingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
     public void SpawnEnemy(int enemyCount)
     {
         if (!enemySpawned)
