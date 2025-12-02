@@ -7,7 +7,7 @@ public class StateMachine_3D : MonoBehaviour
 
     [Space]
 
-    private CharacterState_3D currentState;
+    public CharacterState_3D currentState;
     public CharacterController controller;
     public Animator animator;
     public Transform Transform => transform;

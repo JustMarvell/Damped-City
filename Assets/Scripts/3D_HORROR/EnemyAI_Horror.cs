@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using Cinemachine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class EnemyAI_Horror : MonoBehaviour
 {
@@ -26,7 +26,6 @@ public class EnemyAI_Horror : MonoBehaviour
     [Header("Detectionsdafjskldfj")]
     public float lineOfSightDistance = 10f;
     private float deffLineOfSightDistance;
-    public float lineOfSightDistanceWhenChasing = 15f;
     public float lineOfSightYOffset = 1f;
     public float fieldOfViewAngle = 60f;
     public LayerMask obstacleMask;
@@ -174,6 +173,7 @@ public class EnemyAI_Horror : MonoBehaviour
         if (!hasAttacked)
         {
             hasAttacked = true;
+
             enemyManager.OnEnemyAttack();
         }
     }
@@ -183,7 +183,7 @@ public class EnemyAI_Horror : MonoBehaviour
         navAgent.speed = sprintSpeed;
         navAgent.isStopped = false;
         navAgent.SetDestination(playerTransform.position);
-        lineOfSightDistance = lineOfSightDistanceWhenChasing;
+        lineOfSightDistance = deffLineOfSightDistance + 5;
 
         enemyManager.isChasingPlayer = true;
 
@@ -221,7 +221,6 @@ public class EnemyAI_Horror : MonoBehaviour
         if (animator != null && !string.IsNullOrEmpty(animName))
         {
             animator.CrossFade(animName, 0.2f); 
-            Debug.Log("Fade to animation : " + animName);
         }
 
         if (newState == EnemyState.Chase)
@@ -237,9 +236,6 @@ public class EnemyAI_Horror : MonoBehaviour
 
         if (!hasAttacked && newState == EnemyState.Attack && Vector3.Distance(transform.position, playerTransform.position) < navAgent.stoppingDistance + 1)
         {
-            Debug.Log("Performing attack once!");
-            
-
             StartCoroutine(AttackCoroutine());
         }
     }
@@ -265,7 +261,9 @@ public class EnemyAI_Horror : MonoBehaviour
     {
         if (!captureCamera.activeSelf)
             GameObject.FindGameObjectWithTag("charCam")?.SetActive(false);
-            
+        
+        playerTransform.GetComponent<StateMachine_3D>().currentState.StopPlayerSounds();
+
         playerTransform.gameObject.SetActive(false);
         captureCamera.SetActive(true);
         yield return new WaitForSeconds(captureTime);

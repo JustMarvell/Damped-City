@@ -2,6 +2,7 @@ using Cinemachine;
 using FMOD.Studio;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class CharacterState_3D
 {
     public StateMachine_3D stateMachine;
@@ -41,5 +42,13 @@ public abstract class CharacterState_3D
     public Transform GetHidingPositionAndRotation()
     {
         return Physics.OverlapSphere(transform.position, 3f, stateMachine.hidingPlaceMask)[0].transform;
+    }
+
+    public void StopPlayerSounds()
+    {
+        Debug.Log("Stoping player sounds");
+
+        footsteps.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        sprintsteps.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);        
     }
 }

@@ -34,7 +34,7 @@ public class CharacterInputHandler : MonoBehaviour
 
     void Start()
     {
-        C_CameraController.instance.sensitivity = mouseSensitivity;
+        // C_CameraController.instance.sensitivity = mouseSensitivity;
     }
 
     void Update()
@@ -47,10 +47,10 @@ public class CharacterInputHandler : MonoBehaviour
 
         mouseSensitivity = (int)mouseSensSlider.value;
 
-        if (GameMaster.IsPaused)
-        {
-            C_CameraController.instance.sensitivity = mouseSensitivity;
-        }
+        // if (GameMaster.IsPaused)
+        // {
+        //     C_CameraController.instance.sensitivity = mouseSensitivity;
+        // }
     }
 
     void OnEnable()

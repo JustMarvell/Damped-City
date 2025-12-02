@@ -58,7 +58,7 @@ public class State_Sprint : CharacterState_3D
 
     public override void HandleInput()
     {
-        if (!stateMachine.SprintInput)
+        if (!stateMachine.SprintInput || stateMachine.MovementInput.sqrMagnitude < .01f)
             stateMachine.ChangeState(new State_Idle(stateMachine));
 
         if (stateMachine.HidingInput && CheckHidingPosition())
