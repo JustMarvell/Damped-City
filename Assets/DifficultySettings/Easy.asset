@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Easy
   m_EditorClassIdentifier: 
   name: Easy
-  enemyCount: 2
-  enemyNormalSpeed: 1
+  enemyCount: 3
+  enemyNormalSpeed: 2
   enemySprintSpeed: 5
   enemyLineOfSightDistance: 20
   enemyDetectionRadius: 20
-  collectableCount: 1
+  collectableCount: 5
   playerNormalSpeed: 5
   playerSprintSpeed: 9
   staminaRegenRate: 20

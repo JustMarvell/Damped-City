@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ public class C_CameraController : MonoBehaviour
 {
     public Transform cam;
     public float sensitivity = 100f;
+    public string mouseSensKey = "Mouse_Sens";
     public Vector2 angleClamp = new(-90, 90);
     public Vector2 defaultAngleClamp = new();
     public InputAction mouseAction;
@@ -37,6 +39,8 @@ public class C_CameraController : MonoBehaviour
 
         rotationY = rot.y;
         rotationX = rot.x;
+
+        sensitivity = PlayerPrefs.HasKey(mouseSensKey) ? PlayerPrefs.GetFloat(mouseSensKey) : 100f;
     }
 
     public void TriggerHiding(Quaternion newRotation)
@@ -72,6 +76,15 @@ public class C_CameraController : MonoBehaviour
         cam.rotation = rotation;
 
         cam.position = transform.position + new Vector3(0, 1, 0);
+    }
+
+    public float SetMouseSens
+    {
+        set
+        {    
+            sensitivity = value;
+            PlayerPrefs.SetFloat(mouseSensKey, value);
+        }
     }
 
     void OnEnable()

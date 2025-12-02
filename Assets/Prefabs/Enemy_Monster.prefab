@@ -354,7 +354,7 @@ MonoBehaviour:
   lineOfSightDistance: 20
   lineOfSightDistanceWhenChasing: 15
   lineOfSightYOffset: 1.75
-  fieldOfViewAngle: 80
+  fieldOfViewAngle: 120
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2098049
