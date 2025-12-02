@@ -137,7 +137,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: .6
+  bundleVersion: .7
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -160,7 +160,7 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.VellMK.DampedCity
   buildNumber:
-    Standalone: 2
+    Standalone: 3
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
