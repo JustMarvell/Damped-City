@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 150
+--- !u!114 &-8584682615580008017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AtmosphereQue/FloodedGrounds/Taps_3D
+  m_EditorClassIdentifier: 
+  Path: event:/AtmosphereQue/FloodedGrounds/Taps_3D
+  Guid:
+    Data1: -1569867294
+    Data2: 1219104461
+    Data3: -231478390
+    Data4: 957692947
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20000
 --- !u!114 &-8054750314230005117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,11 +76,11 @@ MonoBehaviour:
   - {fileID: -2303084522546923632}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 20000
 --- !u!114 &-7880339750735338889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,11 +130,11 @@ MonoBehaviour:
   - {fileID: -2303084522546923632}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 50136
 --- !u!114 &-5792970959908087908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +150,7 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639000355117136749
+  lastModified: 639003200994649939
   FileSizes:
   - Name: Desktop
     Value: 1524
@@ -195,13 +222,13 @@ MonoBehaviour:
     Data4: -292179059
   Banks:
   - {fileID: -2303084522546923632}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 50712
 --- !u!114 &-3111740381718182546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,10 +298,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638999891513985195
+  lastModified: 639003173691534734
   FileSizes:
   - Name: Desktop
-    Value: 2207424
+    Value: 2977184
   Exists: 1
 --- !u!114 &-2140349036725564189
 MonoBehaviour:
@@ -291,10 +318,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639000355135587805
+  lastModified: 639003207502658713
   FileSizes:
   - Name: Desktop
-    Value: 5845184
+    Value: 5847168
   Exists: 1
 --- !u!114 &-1608287688889407151
 MonoBehaviour:
@@ -423,13 +450,16 @@ MonoBehaviour:
   - {fileID: -4614951805748497365}
   - {fileID: 2800849503035587149}
   - {fileID: 7057653988470045434}
+  - {fileID: -8584682615580008017}
+  - {fileID: 5265990114010143833}
+  - {fileID: 5711275958264440972}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5792970959908087908}
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639000355135587805
+  cacheTime: 639003207502658713
   SerializableEventsDict:
   - key: event:/AtmosphereQue/Short_Rising_Que
     index: 0
@@ -473,6 +503,24 @@ MonoBehaviour:
     index: 19
   - key: event:/SFX/RunSteps
     index: 20
+  - key: event:/Music/Atmosphere/Atmosphere_Rising_Loop
+    index: 21
+  - key: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
+    index: 22
+  - key: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
+    index: 23
+  - key: event:/AtmosphereQue/Cutscenes/GameOverCutsceneBase
+    index: 24
+  - key: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
+    index: 25
+  - key: event:/Music/Atmosphere/Atmosphere_2
+    index: 26
+  - key: event:/AtmosphereQue/FloodedGrounds/Taps_3D
+    index: 27
+  - key: event:/AtmosphereQue/FloodedGrounds/Horn_3D_Loop
+    index: 28
+  - key: event:/Music/Level/LevelMusic
+    index: 29
 --- !u!114 &739054844137058355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,10 +590,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639000355117148399
+  lastModified: 639003200994664986
   FileSizes:
   - Name: Desktop
-    Value: 2324
+    Value: 2468
   Exists: 1
 --- !u!114 &2260348216737190702
 MonoBehaviour:
@@ -561,10 +609,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/AtmosphereQue/FloodedGrounds/Horn_3D
   Guid:
-    Data1: 410172031
-    Data2: 1216077957
-    Data3: -1074337615
-    Data4: -2096796188
+    Data1: -2043620129
+    Data2: 1169908862
+    Data3: 998116277
+    Data4: -2106470599
   Banks:
   - {fileID: -2303084522546923632}
   IsStream: 0
@@ -573,7 +621,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 8688
 --- !u!114 &2328070669154594545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,6 +757,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 280
+--- !u!114 &5265990114010143833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AtmosphereQue/FloodedGrounds/Horn_3D_Loop
+  m_EditorClassIdentifier: 
+  Path: event:/AtmosphereQue/FloodedGrounds/Horn_3D_Loop
+  Guid:
+    Data1: 410172031
+    Data2: 1216077957
+    Data3: -1074337615
+    Data4: -2096796188
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20000
 --- !u!114 &5486284091614163438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,11 +806,38 @@ MonoBehaviour:
   - {fileID: -2303084522546923632}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 25000
+--- !u!114 &5711275958264440972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level/LevelMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level/LevelMusic
+  Guid:
+    Data1: 983040074
+    Data2: 1105437168
+    Data3: -302599012
+    Data4: 493751855
+  Banks:
+  - {fileID: -2140349036725564189}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 110000
 --- !u!114 &6293210146624263305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,7 +941,7 @@ MonoBehaviour:
   - {fileID: -2140349036725564189}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -893,11 +995,11 @@ MonoBehaviour:
   - {fileID: -2303084522546923632}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 60000
 --- !u!114 &8854017313890004036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,8 +1022,8 @@ MonoBehaviour:
   - {fileID: -2303084522546923632}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 20000
