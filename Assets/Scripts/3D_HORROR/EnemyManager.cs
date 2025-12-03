@@ -77,7 +77,7 @@ public class EnemyManager : MonoBehaviour
 
     public void StopChasingSound()
     {
-        chasingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        chasingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void SpawnEnemy(int enemyCount)
