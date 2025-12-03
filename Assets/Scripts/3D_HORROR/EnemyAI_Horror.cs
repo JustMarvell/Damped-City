@@ -170,12 +170,7 @@ public class EnemyAI_Horror : MonoBehaviour
 
     void HandleAttackOnce()
     {
-        if (!hasAttacked)
-        {
-            hasAttacked = true;
-
-            enemyManager.OnEnemyAttack();
-        }
+        
     }
 
     void HandleChasing()
@@ -234,7 +229,7 @@ public class EnemyAI_Horror : MonoBehaviour
             runAlert.SetActive(false);
         }
 
-        if (!hasAttacked && newState == EnemyState.Attack && Vector3.Distance(transform.position, playerTransform.position) < navAgent.stoppingDistance + 1)
+        if (!hasAttacked && newState == EnemyState.Attack && Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1, playerMask))
         {
             StartCoroutine(AttackCoroutine());
         }
@@ -259,6 +254,17 @@ public class EnemyAI_Horror : MonoBehaviour
 
     private IEnumerator AttackCoroutine()
     {
+        if (!hasAttacked)
+        {
+            hasAttacked = true;
+
+            enemyManager.OnEnemyAttack();
+        }
+
+        enemyManager.isChasingPlayer = false;
+            
+        onChaseCallback?.Invoke();
+
         if (!captureCamera.activeSelf)
             GameObject.FindGameObjectWithTag("charCam")?.SetActive(false);
         
