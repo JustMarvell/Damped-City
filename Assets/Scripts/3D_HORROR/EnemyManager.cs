@@ -25,6 +25,8 @@ public class EnemyManager : MonoBehaviour
     public bool enemySpawned = false;
     public float spawnProgress = 0;
 
+    public int chasingCount = 0;
+
     void Awake()
     {
         instance = this;
@@ -37,6 +39,31 @@ public class EnemyManager : MonoBehaviour
 
         attackingSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.ENEMY_Attacking);
         attackingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    public void StartChasing()
+    {
+        chasingCount++;
+
+        if (chasingCount > 0)
+        {
+            print("Chasingggg");
+            isChasingPlayer = true;
+            OnEnemyChase();
+        }
+    }
+
+    public void StopChasing()
+    {
+        chasingCount--;
+
+        if (chasingCount <= 0)
+        {
+            print("Stoped chasing");
+            chasingCount = 0;
+            isChasingPlayer = false;
+            OnEnemyChase();
+        }
     }
 
     public void ActivateEnemy()
@@ -117,6 +144,7 @@ public class EnemyManager : MonoBehaviour
         {
             enemies[i].transform.position = Vector3.zero;
             enemies[i].transform.localPosition = Vector3.zero;
+            enemies[i].hasAttacked = false;
 
             enemies[i].gameObject.SetActive(false);
         }

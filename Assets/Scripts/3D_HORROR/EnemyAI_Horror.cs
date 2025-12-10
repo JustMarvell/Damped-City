@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using FMODUnity;
 using FMOD.Studio;
+using System.IO.Pipes;
 
 public class EnemyAI_Horror : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class EnemyAI_Horror : MonoBehaviour
     public float normalSpeed = 4f;
     public float sprintSpeed = 6f;
     public float maxWalkRadius = 15f;
-    public float maxStuckTime = 2f;
-    public float minIdleTime = 3f;
-    public float maxIdleTime = 5f;
+    public float maxStuckTime = 3f;
+    public float minIdleTime = 4f;
+    public float maxIdleTime = 6f;
 
     [Header("Detectionsdafjskldfj")]
     public float lineOfSightDistance = 10f;
@@ -49,7 +50,9 @@ public class EnemyAI_Horror : MonoBehaviour
     public static bool IS_SEEING_PLAYER;
     public GameObject runAlert;
     [HideInInspector] public bool useLineOfSight = true;
-    private bool hasAttacked = false;
+
+    public bool hasAttacked = false;
+    private Vector3 lastKnownPosition = Vector3.zero;
 
     EnemyManager enemyManager;
 
@@ -79,7 +82,10 @@ public class EnemyAI_Horror : MonoBehaviour
             return;
 
         if (DetectPlayer() && !hasAttacked)
+        {
+            lastKnownPosition = playerTransform.position;
             SetState(EnemyState.Chase);
+        }
 
         switch (currentState)
         {
@@ -95,28 +101,99 @@ public class EnemyAI_Horror : MonoBehaviour
             case EnemyState.Chase:
                 HandleChasing();
                 break;
+            case EnemyState.Curious:
+                HandleCurious();
+                break;
         }
     }
 
+    private void HandleCurious()
+    {
+        navAgent.speed = normalSpeed;
+        navAgent.isStopped = false;
+        lineOfSightDistance = deffLineOfSightDistance + 3;
+
+        if (DetectPlayer())
+        {
+            SetState(EnemyState.Chase);
+            return;
+        }
+
+        if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
+        {
+            lastKnownPosition = Vector3.zero;
+            SetState(EnemyState.Idle);
+            idleTimer = 0f;
+        }
+    }
+
+    NavMeshHit _hit;
     void SetRandomDestination()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * maxWalkRadius;
-        randomDirection += transform.position;
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, maxWalkRadius, NavMesh.AllAreas))
-            navAgent.SetDestination(hit.position);
+        // Vector3 randomDirection = Random.insideUnitSphere * maxWalkRadius;
+        // randomDirection += transform.position;
+        // NavMeshHit hit;
+        // if (NavMesh.SamplePosition(randomDirection, out hit, maxWalkRadius, NavMesh.AllAreas))
+        //     navAgent.SetDestination(hit.position);
+
+        bool foundValidPosition = false;
+        int attempts = 0;
+        const int maxAttempts = 10;
+        const float minRoamDistance = 5f;
+
+        while (attempts < maxAttempts && !foundValidPosition)
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * maxWalkRadius + transform.position;
+            
+            if (NavMesh.SamplePosition(randomDirection, out _hit, maxWalkRadius, NavMesh.AllAreas))
+            {
+                if (Vector3.Distance(transform.position, _hit.position) >= minRoamDistance)
+                {
+                    foundValidPosition = true;
+                }
+            }
+            
+            attempts++;
+        }
+
+        if (foundValidPosition)
+        {
+            navAgent.SetDestination(_hit.position);
+        }
+        else
+        {
+            Vector3 fallbackDir = Random.insideUnitSphere * (maxWalkRadius * 0.5f) + transform.position;
+            NavMeshHit fallbackHit;
+            if (NavMesh.SamplePosition(fallbackDir, out fallbackHit, maxWalkRadius * 0.5f, NavMesh.AllAreas))
+            {
+                navAgent.SetDestination(fallbackHit.position);
+            }
+            else
+            {
+                navAgent.ResetPath();
+            }
+        }
     }
+
+    Collider[] playerDetects;
+    Vector3 directionToPlayer;
+    float angleToPlayer;
 
     bool DetectPlayer()
     {
         if (playerTransform == null) return false;
 
-        Vector3 directionToPlayer = playerTransform.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
+        if (!Physics.CheckSphere(transform.position, lineOfSightDistance, playerMask))
+            return false;
 
-        if (distanceToPlayer > lineOfSightDistance) return false;
+        playerDetects = Physics.OverlapSphere(transform.position, lineOfSightDistance, playerMask);
 
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer.normalized);
+        if (playerDetects == null || playerDetects.Length == 0) // FIX: Proper null/empty check
+            return false;
+
+        directionToPlayer = playerDetects[0].transform.position - transform.position;
+        angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer.normalized); // FIX: Changed to enemy's forward (bug fix for FOV)
+
         if (angleToPlayer > fieldOfViewAngle / 2f) return false;
 
         if (Physics.Raycast(transform.position + Vector3.up * lineOfSightYOffset, directionToPlayer.normalized, out RaycastHit hit, lineOfSightDistance, obstacleMask))
@@ -129,8 +206,6 @@ public class EnemyAI_Horror : MonoBehaviour
     {
         navAgent.isStopped = true;
         lineOfSightDistance = deffLineOfSightDistance;
-        if (enemyManager.isChasingPlayer)
-            enemyManager.isChasingPlayer = false;
 
         if (idleTimer <= 0f)
             idleTimer = Random.Range(minIdleTime, maxIdleTime);
@@ -180,18 +255,21 @@ public class EnemyAI_Horror : MonoBehaviour
         navAgent.SetDestination(playerTransform.position);
         lineOfSightDistance = deffLineOfSightDistance + 5;
 
-        enemyManager.isChasingPlayer = true;
-
         onChaseCallback?.Invoke();
-
 
         if (!DetectPlayer())
         {
-            enemyManager.isChasingPlayer = false;
-            
-            onChaseCallback?.Invoke();
-            SetState(EnemyState.Idle);
-            idleTimer = 0f;
+            if (lastKnownPosition != Vector3.zero)
+            {
+                navAgent.SetDestination(lastKnownPosition);
+                SetState(EnemyState.Curious);
+            }
+            else
+            {
+                onChaseCallback?.Invoke();
+                SetState(EnemyState.Idle);
+                idleTimer = 0f;
+            }
             return;
         }
 
@@ -206,11 +284,36 @@ public class EnemyAI_Horror : MonoBehaviour
         }
     }
 
+
+    [Space]
+    [Space]
+    [Header("Stuff")]
+
+    public bool wasChasing;
+    public bool willBeChasing;
+
     private void SetState(EnemyState newState)
     {
         if (currentState == newState) return;
 
+        wasChasing = currentState == EnemyState.Chase;
+        willBeChasing = newState == EnemyState.Chase;
+
         currentState = newState;
+
+        // if (newState == EnemyState.Chase)
+        //     enemyManager.StartChasing();
+        // else
+        //     enemyManager.StopChasing();
+
+        if (wasChasing && !willBeChasing)
+        {
+            enemyManager.StopChasing();
+        }
+        if (!wasChasing && willBeChasing)
+        { 
+            enemyManager.StartChasing();
+        }
 
         string animName = GetAnimationName(newState);
         if (animator != null && !string.IsNullOrEmpty(animName))
@@ -221,12 +324,12 @@ public class EnemyAI_Horror : MonoBehaviour
         if (newState == EnemyState.Chase)
         {
             IS_SEEING_PLAYER = true;
-            runAlert.SetActive(true);
+            if (runAlert != null) runAlert.SetActive(true);
         }
         else
         {
             IS_SEEING_PLAYER = false;
-            runAlert.SetActive(false);
+            if (runAlert != null) runAlert.SetActive(false);
         }
 
         if (!hasAttacked && newState == EnemyState.Attack && Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1, playerMask))
@@ -247,6 +350,8 @@ public class EnemyAI_Horror : MonoBehaviour
                 return "Chase";
             case EnemyState.Attack:
                 return "Attack";
+            case EnemyState.Curious:
+                return "Roam";
             default:
                 return string.Empty;
         }
@@ -260,8 +365,6 @@ public class EnemyAI_Horror : MonoBehaviour
 
             enemyManager.OnEnemyAttack();
         }
-
-        enemyManager.isChasingPlayer = false;
             
         onChaseCallback?.Invoke();
 
