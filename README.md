@@ -3,7 +3,7 @@
 
 > Genre : Horror<br>
 Core Mechanic : Collect And Avoid<br>
-Status : **_Ongoing_**
+Status : **_ONGOING (OPEN BETA)_**
 
 
 > [!Note]
