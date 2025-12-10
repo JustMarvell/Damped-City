@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class State_Hiding : CharacterState_3D
 {
@@ -15,9 +17,21 @@ public class State_Hiding : CharacterState_3D
     public float rotX;
     public float rotY;
 
+    PLAYBACK_STATE hidingPlaybackEnterState;
+    PLAYBACK_STATE hidingPlaybackExitState;
+
     public override void EnterState()
     {
         stateMachine.m_currentState = CURRENT_STATE_3D.HIDING;
+
+        hidingEnter.getPlaybackState(out hidingPlaybackEnterState);
+        hidingExit.getPlaybackState(out hidingPlaybackExitState);
+
+        if (hidingPlaybackEnterState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            hidingEnter.start();
+            hidingExit.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
 
         _camera = C_CameraController.instance;
 
@@ -50,6 +64,15 @@ public class State_Hiding : CharacterState_3D
 
     public override void ExitState()
     {
+        hidingEnter.getPlaybackState(out hidingPlaybackEnterState);
+        hidingExit.getPlaybackState(out hidingPlaybackExitState);
+
+        if (hidingPlaybackExitState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            hidingExit.start();
+            hidingEnter.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+
         transform.SetPositionAndRotation(initialPosition, initialRotation);
 
         _camera.TriggerUnhide();

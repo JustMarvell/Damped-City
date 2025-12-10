@@ -19,14 +19,15 @@ public class GameMaster : MonoBehaviour
     public bool isCollectedAll = false;
 
     [Space]
-
-    public bool useRunAlert = false;
-
     Inventory inventory;
 
     [Space]
 
-    public InputActionReference pauseAction;
+    public InputAction pauseAction;
+    public bool pauseInput;
+
+    [Space]
+
     public bool usePauseMenu = false;
     public bool stopTimeOnPause = false;
     public GameObject[] activateOnPause;
@@ -62,11 +63,19 @@ public class GameMaster : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+    }
+
+    void FixedUpdate()
+    {
+        pauseInput = pauseAction.triggered;
+
+        if (pauseInput)
         {
-            print("pause pressed");
             if (!IsPaused)
+            {
                 PauseGame_nt();
+            }
         }
     }
 
@@ -78,11 +87,6 @@ public class GameMaster : MonoBehaviour
             foreach (GameObject obj in deactivateOnFinished)
             {
                 obj.SetActive(false);
-            }
-
-            if (useRunAlert)
-            {
-                EnemyManager.instance.MayhemMode();
             }
         }
     }
@@ -196,6 +200,16 @@ public class GameMaster : MonoBehaviour
 
         IsPaused = false;
         ActivateObjects();
+    }
+
+    void OnEnable()
+    {
+        pauseAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        pauseAction.Disable();
     }
 
     public void QuitGame()
