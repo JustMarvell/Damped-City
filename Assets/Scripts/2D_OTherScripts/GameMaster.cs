@@ -19,9 +19,6 @@ public class GameMaster : MonoBehaviour
     public bool isCollectedAll = false;
 
     [Space]
-
-    public bool useRunAlert = false;
-
     Inventory inventory;
 
     [Space]
@@ -90,11 +87,6 @@ public class GameMaster : MonoBehaviour
             foreach (GameObject obj in deactivateOnFinished)
             {
                 obj.SetActive(false);
-            }
-
-            if (useRunAlert)
-            {
-                EnemyManager.instance.MayhemMode();
             }
         }
     }

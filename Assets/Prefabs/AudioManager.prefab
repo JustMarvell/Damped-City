@@ -163,6 +163,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  <NOTIFICATION_PopUp>k__BackingField:
+    Guid:
+      Data1: -1991162816
+      Data2: 1337018385
+      Data3: 1449329042
+      Data4: 1918103387
+    Path: event:/SFX/Notification_Popup
   <PLAYER_Footsteps>k__BackingField:
     Guid:
       Data1: -441899195

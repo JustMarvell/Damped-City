@@ -36,6 +36,11 @@ public class FMODEvents : MonoBehaviour
     [field : SerializeField] public EventReference DIALOGUE_DialogueTyping { get; private set; }
     [field : SerializeField] public EventReference DIALOGUE_SkipDialogue { get; private set; }
 
+
+    [field : Header("Notification Sounds")]
+    [field : SerializeField] public EventReference NOTIFICATION_PopUp { get; private set; }
+
+
     [field : Header("Player Sounds")]
     [field : SerializeField] public EventReference PLAYER_Footsteps { get; private set; }
     [field : SerializeField] public EventReference PLAYER_Sprintsteps { get; private set; }

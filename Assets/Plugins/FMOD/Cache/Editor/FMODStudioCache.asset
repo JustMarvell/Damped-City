@@ -108,6 +108,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 90
+--- !u!114 &-7656128255764575481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Meme_KOBOJAWA
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Meme_KOBOJAWA
+  Guid:
+    Data1: -470200321
+    Data2: 1337379651
+    Data3: -844014147
+    Data4: -1249581402
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8500
 --- !u!114 &-7573063634631811719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,11 +177,38 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639010051223168554
+  lastModified: 639010185739058979
   FileSizes:
   - Name: Desktop
     Value: 1524
   Exists: 1
+--- !u!114 &-4954618432975975919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Notification_Unpop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Notification_Unpop
+  Guid:
+    Data1: 1578078658
+    Data2: 1340210349
+    Data3: 1876043434
+    Data4: -373892844
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 170
 --- !u!114 &-4614951805748497365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,11 +379,38 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639010065967571375
+  lastModified: 639010185745208949
   FileSizes:
   - Name: Desktop
-    Value: 3303840
+    Value: 3489952
   Exists: 1
+--- !u!114 &-2259054181222343011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Meme_WIWIWIMotivational
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Meme_WIWIWIMotivational
+  Guid:
+    Data1: -224945469
+    Data2: 1134742437
+    Data3: -1837381241
+    Data4: -137179879
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 30000
 --- !u!114 &-2140349036725564189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,13 +563,18 @@ MonoBehaviour:
   - {fileID: 5711275958264440972}
   - {fileID: -3749906134435081457}
   - {fileID: 1786081610934383799}
+  - {fileID: -2259054181222343011}
+  - {fileID: -7656128255764575481}
+  - {fileID: 5985862082994110429}
+  - {fileID: 4773013711510251726}
+  - {fileID: -4954618432975975919}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5792970959908087908}
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639010065967571375
+  cacheTime: 639010185745208949
   SerializableEventsDict:
   - key: event:/AtmosphereQue/Short_Rising_Que
     index: 0
@@ -554,6 +640,16 @@ MonoBehaviour:
     index: 30
   - key: event:/SFX/Interact_HidingExit
     index: 31
+  - key: event:/SFX/Meme_WIWIWIMotivational
+    index: 32
+  - key: event:/SFX/Meme_KOBOJAWA
+    index: 33
+  - key: event:/SFX/Meme_MIBOMBO
+    index: 34
+  - key: event:/SFX/Notification_Popup
+    index: 35
+  - key: event:/SFX/Notification_Unpop
+    index: 36
 --- !u!114 &739054844137058355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,10 +719,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639010051223188554
+  lastModified: 639010185739083139
   FileSizes:
   - Name: Desktop
-    Value: 2556
+    Value: 2796
   Exists: 1
 --- !u!114 &1786081610934383799
 MonoBehaviour:
@@ -763,6 +859,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &4773013711510251726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Notification_Popup
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Notification_Popup
+  Guid:
+    Data1: -1991162816
+    Data2: 1337018385
+    Data3: 1449329042
+    Data4: 1918103387
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 160
 --- !u!114 &4896684637351633433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +1021,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 110000
+--- !u!114 &5985862082994110429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Meme_MIBOMBO
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Meme_MIBOMBO
+  Guid:
+    Data1: 1815238458
+    Data2: 1109740819
+    Data3: -1831860554
+    Data4: -384353729
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1123
 --- !u!114 &6293210146624263305
 MonoBehaviour:
   m_ObjectHideFlags: 0
