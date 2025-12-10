@@ -42,8 +42,8 @@ public class PlayerInteraction_3D : MonoBehaviour
 
     void FixedUpdate()
     {
-        hideUIIndicator.SetActive(CheckHidingPlace());
-        takeItemUIIndicator.SetActive(CheckItem());
+        if(hideUIIndicator != null) hideUIIndicator.SetActive(CheckHidingPlace());
+        if(takeItemUIIndicator != null) takeItemUIIndicator.SetActive(CheckItem()); 
     }
 
     bool CheckItem()

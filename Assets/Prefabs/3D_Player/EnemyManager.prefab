@@ -44,6 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c7df735a96c19c0b20b461bea5acb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
-  enemySpawnPoint: []
+  enemyPrefab: {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
+  enemySpawnPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   enemies: []
+  isChasingPlayer: 0
+  hasAttackedPlayer: 0
+  enemySpawned: 0
+  spawnProgress: 0
+  chasingCount: 0

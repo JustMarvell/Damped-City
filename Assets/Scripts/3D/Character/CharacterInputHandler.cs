@@ -20,16 +20,16 @@ public class CharacterInputHandler : MonoBehaviour
     public bool special1Pressed { get; private set; }
     public bool special2Pressed { get; private set; }
 
-    public CinemachineVirtualCamera vc;
-    public Slider mouseSensSlider;
+    // public CinemachineVirtualCamera vc;
+    // public Slider mouseSensSlider;
 
-    [Range(1, 300)]
-    public int mouseSensitivity = 70;
+    // [Range(1, 300)]
+    // public int mouseSensitivity = 70;
 
     void Awake()
     {
         input = GetComponent<PlayerInput>();
-        mouseSensSlider.value = mouseSensitivity;
+        // mouseSensSlider.value = mouseSensitivity;
     }
 
     void Start()
@@ -45,7 +45,7 @@ public class CharacterInputHandler : MonoBehaviour
         special1Pressed = special1Action.triggered;
         special2Pressed = special2Action.triggered;
 
-        mouseSensitivity = (int)mouseSensSlider.value;
+        // mouseSensitivity = (int)mouseSensSlider.value;
 
         // if (GameMaster.IsPaused)
         // {
@@ -77,8 +77,8 @@ public class CharacterInputHandler : MonoBehaviour
         special2Action.Disable();
     }
 
-    public void ChangeSens()
-    {
-        C_CameraController.instance.sensitivity = mouseSensitivity;
-    }
+    // public void ChangeSens()
+    // {
+    //     C_CameraController.instance.sensitivity = mouseSensitivity;
+    // }
 }
