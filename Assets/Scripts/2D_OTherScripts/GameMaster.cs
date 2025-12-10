@@ -26,7 +26,11 @@ public class GameMaster : MonoBehaviour
 
     [Space]
 
-    public InputActionReference pauseAction;
+    public InputAction pauseAction;
+    public bool pauseInput;
+
+    [Space]
+
     public bool usePauseMenu = false;
     public bool stopTimeOnPause = false;
     public GameObject[] activateOnPause;
@@ -62,11 +66,19 @@ public class GameMaster : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+    }
+
+    void FixedUpdate()
+    {
+        pauseInput = pauseAction.triggered;
+
+        if (pauseInput)
         {
-            print("pause pressed");
             if (!IsPaused)
+            {
                 PauseGame_nt();
+            }
         }
     }
 
@@ -196,6 +208,16 @@ public class GameMaster : MonoBehaviour
 
         IsPaused = false;
         ActivateObjects();
+    }
+
+    void OnEnable()
+    {
+        pauseAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        pauseAction.Disable();
     }
 
     public void QuitGame()

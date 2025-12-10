@@ -177,6 +177,20 @@ MonoBehaviour:
       Data3: -453775199
       Data4: -310168457
     Path: event:/SFX/RunSteps
+  <PLAYER_HidingEnter>k__BackingField:
+    Guid:
+      Data1: 1002723503
+      Data2: 1330514754
+      Data3: 2117940138
+      Data4: 337050046
+    Path: event:/SFX/Interact_HidingEnter
+  <PLAYER_HidingExit>k__BackingField:
+    Guid:
+      Data1: 338328305
+      Data2: 1213347255
+      Data3: -1306749541
+      Data4: -187620817
+    Path: event:/SFX/Interact_HidingExit
   <ENEMY_Chasing>k__BackingField:
     Guid:
       Data1: 1934016491

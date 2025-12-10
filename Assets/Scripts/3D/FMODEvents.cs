@@ -39,6 +39,8 @@ public class FMODEvents : MonoBehaviour
     [field : Header("Player Sounds")]
     [field : SerializeField] public EventReference PLAYER_Footsteps { get; private set; }
     [field : SerializeField] public EventReference PLAYER_Sprintsteps { get; private set; }
+    [field : SerializeField] public EventReference PLAYER_HidingEnter { get; private set; }
+    [field : SerializeField] public EventReference PLAYER_HidingExit { get; private set; }
 
     [field : Header("Enemy Sounds")]
     [field : SerializeField] public EventReference ENEMY_Chasing { get; private set; }
