@@ -150,7 +150,7 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639003200994649939
+  lastModified: 639010051223168554
   FileSizes:
   - Name: Desktop
     Value: 1524
@@ -202,6 +202,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 19296
   Exists: 1
+--- !u!114 &-3749906134435081457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Interact_HidingEnter
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Interact_HidingEnter
+  Guid:
+    Data1: 1002723503
+    Data2: 1330514754
+    Data3: 2117940138
+    Data4: 337050046
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &-3175827923198099769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,10 +325,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639003380537144476
+  lastModified: 639010065967571375
   FileSizes:
   - Name: Desktop
-    Value: 2977184
+    Value: 3303840
   Exists: 1
 --- !u!114 &-2140349036725564189
 MonoBehaviour:
@@ -453,13 +480,15 @@ MonoBehaviour:
   - {fileID: -8584682615580008017}
   - {fileID: 5265990114010143833}
   - {fileID: 5711275958264440972}
+  - {fileID: -3749906134435081457}
+  - {fileID: 1786081610934383799}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5792970959908087908}
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639003380537144476
+  cacheTime: 639010065967571375
   SerializableEventsDict:
   - key: event:/AtmosphereQue/Short_Rising_Que
     index: 0
@@ -521,6 +550,10 @@ MonoBehaviour:
     index: 28
   - key: event:/Music/Level/LevelMusic
     index: 29
+  - key: event:/SFX/Interact_HidingEnter
+    index: 30
+  - key: event:/SFX/Interact_HidingExit
+    index: 31
 --- !u!114 &739054844137058355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,11 +623,38 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639003200994664986
+  lastModified: 639010051223188554
   FileSizes:
   - Name: Desktop
-    Value: 2468
+    Value: 2556
   Exists: 1
+--- !u!114 &1786081610934383799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Interact_HidingExit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Interact_HidingExit
+  Guid:
+    Data1: 338328305
+    Data2: 1213347255
+    Data3: -1306749541
+    Data4: -187620817
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 900
 --- !u!114 &2260348216737190702
 MonoBehaviour:
   m_ObjectHideFlags: 0
