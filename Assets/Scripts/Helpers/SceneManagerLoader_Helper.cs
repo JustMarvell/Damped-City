@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class SceneManagerLoader_Helper : MonoBehaviour
 {
@@ -104,8 +105,60 @@ public class SceneManagerLoader_Helper : MonoBehaviour
         progressBar.value = totalAllProgress;
 
         yield return new WaitForSeconds(.2f);
+
+        if (SaveSystem.instance.HasSaveFile())
+        {
+            GameData data = SaveSystem.instance.LoadGame();
+            if (data != null)
+            {
+                // Restore collected items
+                if (Inventory.instance != null && GameMaster.instance != null)
+                {
+                    int current = Inventory.instance.CheckCollectedItemNumber(GameMaster.instance.itemToCollect);
+                    int toAdd = data.collectedItemCount - current;
+                    for (int i = 0; i < toAdd; i++)
+                        Inventory.instance.Add(GameMaster.instance.itemToCollect);
+                }
+
+                // Restore retry chances
+                if (GameMaster.instance != null)
+                    GameMaster.instance.currentRetryChange = data.currentRetryChance;
+
+                // Restore player position
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    player.transform.position = data.playerPosition;
+                    player.transform.rotation = data.playerRotation;
+                }
+
+                // Restore activated/deleted objects
+                foreach (string path in data.activatedObjectPaths)
+                {
+                    GameObject obj = GameObject.Find(path);
+                    if (obj != null) obj.SetActive(true);
+                }
+                foreach (string path in data.deletedObstaclePaths)
+                {
+                    GameObject obj = GameObject.Find(path);
+                    if (obj != null) Destroy(obj);
+                }
+
+                GameSaveTracker.instance.hasPlayedStartingCutscene = data.hasPlayedStartingCutscene;
+
+                if (data.hasPlayedStartingCutscene)
+                {
+                    // Skip starting cutscene
+                    loadingScreenObject.SetActive(false);
+                    yield return null;
+                }
+            }
+        }
+
+        // Normal starting cutscene
         loadingScreenObject.SetActive(false);
         CutsceneManager.instance.PlayStartingCutscene();
+        GameSaveTracker.instance.hasPlayedStartingCutscene = true; // Mark as played
     }
 
     
