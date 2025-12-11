@@ -36,4 +36,9 @@ public class MainMenuCameraEvent_Helper : MonoBehaviour
     {
         SceneManagerLoader_Helper.instance.QuitGame();
     }
+
+    public void NewGame()
+    {
+        SaveSystem.instance.DeleteSave();
+    }
 }
