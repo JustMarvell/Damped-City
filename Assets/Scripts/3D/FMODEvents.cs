@@ -50,4 +50,5 @@ public class FMODEvents : MonoBehaviour
     [field : Header("Enemy Sounds")]
     [field : SerializeField] public EventReference ENEMY_Chasing { get; private set; }
     [field : SerializeField] public EventReference ENEMY_Attacking { get; private set; }
+    [field : SerializeField] public EventReference ENEMY_Curious { get; private set; }
 }

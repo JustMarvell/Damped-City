@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3764209955449736118, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
       propertyPath: m_RootOrder
@@ -521,6 +521,10 @@ PrefabInstance:
     - target: {fileID: 4825927994307953751, guid: 4b09a04b9a7baaf3591517120013561c, type: 3}
       propertyPath: m_Name
       value: UI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825927994307953751, guid: 4b09a04b9a7baaf3591517120013561c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4825927994307953835, guid: 4b09a04b9a7baaf3591517120013561c, type: 3}
       propertyPath: m_Pivot.x
@@ -978,6 +982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8705148848217115884, guid: d178fd2eb5c19bfa39ffc9ecfca1d2df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d178fd2eb5c19bfa39ffc9ecfca1d2df, type: 3}
 --- !u!1 &1702408883
@@ -999,7 +1007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1702408884
 MeshFilter:
   m_ObjectHideFlags: 0
