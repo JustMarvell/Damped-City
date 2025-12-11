@@ -15,7 +15,7 @@ public class ItemCounter : MonoBehaviour
 
         counterText = GetComponent<TextMeshProUGUI>();
 
-        counterText.text = "0 / " + GameMaster.instance.numberOfItemToCollect.ToString();
+        UpdateCounter();
     }
 
     void UpdateCounter()

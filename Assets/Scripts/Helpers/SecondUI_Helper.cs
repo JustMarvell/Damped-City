@@ -12,6 +12,16 @@ public class SecondUI_Helper : MonoBehaviour
         SceneManagerLoader_Helper.instance.SwitchToMenuScene();
     }
 
+    public void SaveGame()
+    {
+        SaveSystem.instance.SaveGame();
+    }
+
+    public void DeleteSave()
+    {
+        SaveSystem.instance.DeleteSave();
+    }
+
     public void RetryLevel()
     {
         Time.timeScale = 1f;
