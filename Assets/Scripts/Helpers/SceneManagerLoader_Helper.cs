@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class SceneManagerLoader_Helper : MonoBehaviour
 {
@@ -118,6 +118,8 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                     int toAdd = data.collectedItemCount - current;
                     for (int i = 0; i < toAdd; i++)
                         Inventory.instance.Add(GameMaster.instance.itemToCollect);
+                        
+                    CollectableManager.instance.itemCollectUI.SetActive(false);
                 }
 
                 // Restore retry chances
@@ -147,13 +149,30 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                 // Restore activated/deleted objects
                 foreach (string path in data.activatedObjectPaths)
                 {
-                    GameObject obj = GameObject.Find(path);
-                    if (obj != null) obj.SetActive(true);
+                    GameObject obj = FindObjectByHierarchyPath(path);
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                        Debug.Log("Activated: " + path);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Could not find activated object: " + path);
+                    }
                 }
+
                 foreach (string path in data.deletedObstaclePaths)
                 {
-                    GameObject obj = GameObject.Find(path);
-                    if (obj != null) Destroy(obj);
+                    GameObject obj = FindObjectByHierarchyPath(path);
+                    if (obj != null)
+                    {
+                        Destroy(obj);
+                        Debug.Log("Destroyed obstacle: " + path);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Could not find obstacle to destroy: " + path + " (might already be destroyed or path changed)");
+                    }
                 }
 
                 GameSaveTracker.instance.hasPlayedStartingCutscene = data.hasPlayedStartingCutscene;
@@ -165,14 +184,12 @@ public class SceneManagerLoader_Helper : MonoBehaviour
 
                     yield return new WaitForSeconds(0.3f);
 
-                    CollectableManager.instance.itemCollectUI.SetActive(true);
-
                     if (player != null)
                     {
                         player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
                         player.gameObject.GetComponent<CharacterController>().enabled = false;
                         player.gameObject.GetComponent<PlayerInput>().enabled = false;
-                        player.gameObject.GetComponent<PlayerInputHandler>().enabled = false;
+                        player.gameObject.GetComponent<CharacterInputHandler>().enabled = false;
 
                         player.transform.position = data.playerPosition;
                         player.transform.rotation = data.playerRotation;
@@ -180,13 +197,15 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                         player.gameObject.GetComponent<StateMachine_3D>().enabled = true;
                         player.gameObject.GetComponent<CharacterController>().enabled = true;
                         player.gameObject.GetComponent<PlayerInput>().enabled = true;
-                        player.gameObject.GetComponent<PlayerInputHandler>().enabled = true;
+                        player.gameObject.GetComponent<CharacterInputHandler>().enabled = true;
 
                         player.gameObject.GetComponent<PlayerInteraction_3D>().enabled = true;
                         player.gameObject.GetComponent<C_CameraController>().enabled = true;
                     }
 
-                    loadingScreenObject.SetActive(false);
+                    CollectableManager.instance.itemCollectUI.SetActive(false);
+
+                    loadingScreenObject.SetActive(false); 
                     
                     yield break;
                 }
@@ -199,6 +218,30 @@ public class SceneManagerLoader_Helper : MonoBehaviour
         GameSaveTracker.instance.hasPlayedStartingCutscene = true; // Mark as played
     }
 
+    GameObject FindObjectByHierarchyPath(string path)
+    {
+        string[] parts = path.Split('/');
+        if (parts.Length == 0) return null;
+
+        // Start from all root objects in the current scene
+        foreach (GameObject rootObj in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            if (rootObj.name == parts[0])
+            {
+                if (parts.Length == 1) return rootObj;
+
+                Transform current = rootObj.transform;
+                for (int i = 1; i < parts.Length; i++)
+                {
+                    Transform child = current.Find(parts[i]);
+                    if (child == null) return null;
+                    current = child;
+                }
+                return current.gameObject;
+            }
+        }
+        return null;
+    }
     
     
     public IEnumerator GetSceneLoadProgress()

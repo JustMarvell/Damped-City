@@ -49,16 +49,9 @@ public class DialogueManager : MonoBehaviour
         typingSound = audioManager.CreateEventInstance(fMODEvents.DIALOGUE_DialogueTyping);
     }
 
-    bool itemCollectInitialState;
-
     public void StartDialogue(Dialogue _dialogue)
     {
         index = 0;
-
-        itemCollectInitialState = CollectableManager.instance.itemCollectUI.activeSelf;
-
-        if (itemCollectInitialState)
-            CollectableManager.instance.itemCollectUI.SetActive(false);
 
         dialogueInputManager.enabled = true;
 
@@ -139,8 +132,6 @@ public class DialogueManager : MonoBehaviour
 
         animator.SetBool("IsOpen", false);
         isInDialogue = false;
-
-        CollectableManager.instance.itemCollectUI.SetActive(itemCollectInitialState);
 
         GameMaster.instance.ResumeGame_nst();
 

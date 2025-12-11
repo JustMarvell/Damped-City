@@ -48,6 +48,8 @@ public class CollectableManager : MonoBehaviour
 
     void UpdateItemNumber()
     {
+        itemCollectUI.SetActive(true);
+
         if (inventory.CheckCollectedItemNumber(itemToCollect) == numberOfItemToCollect && !isCollectedAll)
         {
             isCollectedAll = true;
