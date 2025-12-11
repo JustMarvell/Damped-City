@@ -1,18 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameSaveTracker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameSaveTracker instance;
+
+    private HashSet<string> activatedObjects = new HashSet<string>();
+    private HashSet<string> deletedObstacles = new HashSet<string>();
+    public bool hasPlayedStartingCutscene = false;
+
+    void Awake()
     {
-        
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RegisterActivatedObject(GameObject obj)
     {
-        
+        if (obj != null)
+            activatedObjects.Add(GetPath(obj.transform));
+    }
+
+    public void RegisterDeletedObstacle(GameObject obj)
+    {
+        if (obj != null)
+            deletedObstacles.Add(GetPath(obj.transform));
+    }
+
+    public List<string> GetActivatedObjects() => new List<string>(activatedObjects);
+    public List<string> GetDeletedObstacles() => new List<string>(deletedObstacles);
+
+    private string GetPath(Transform t)
+    {
+        string path = t.name;
+        while (t.parent != null)
+        {
+            t = t.parent;
+            path = t.name + "/" + path;
+        }
+        return path;
     }
 }
