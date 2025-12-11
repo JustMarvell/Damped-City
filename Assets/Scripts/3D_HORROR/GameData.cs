@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class GameData : MonoBehaviour
+[System.Serializable]
+public class GameData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Core data
+    public int collectedItemCount;
+    public int currentRetryChance;
+    public Vector3 playerPosition;
+    public Quaternion playerRotation;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // storyline progress
+    public List<string> activatedObjectPaths = new List<string>(); 
+    public List<string> deletedObstaclePaths = new List<string>();
+    public bool hasPlayedStartingCutscene = false;
 }
