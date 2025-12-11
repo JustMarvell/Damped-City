@@ -9,9 +9,12 @@ public class SecondUI_Helper : MonoBehaviour
 
     public void BackToMenu()
     {
-        SaveSystem.instance.SaveGame();
-
         SceneManagerLoader_Helper.instance.SwitchToMenuScene();
+    }
+
+    public void SaveGame()
+    {
+        SaveSystem.instance.SaveGame();
     }
 
     public void RetryLevel()
