@@ -147,6 +147,7 @@ public class DialogueManager : MonoBehaviour
             foreach (GameObject neuron in dialogue.objectToActivate)
             {
                 neuron.SetActive(true);
+                GameSaveTracker.instance.RegisterActivatedObject(neuron);
             }
         }
 
@@ -159,6 +160,7 @@ public class DialogueManager : MonoBehaviour
         {
             foreach (GameObject yopussi in dialogue.ObstaclesToDelete)
             {
+                GameSaveTracker.instance.RegisterDeletedObstacle(yopussi);
                 Destroy(yopussi);
             }
         }
