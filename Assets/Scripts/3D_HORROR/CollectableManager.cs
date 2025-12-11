@@ -10,6 +10,10 @@ public class CollectableManager : MonoBehaviour
         instance = this;
     }
 
+    public GameObject itemCollectUI;
+
+    [Space]
+
     public Item itemToCollect;
     public int numberOfItemToCollect = 15;
     public bool isCollectedAll = false;

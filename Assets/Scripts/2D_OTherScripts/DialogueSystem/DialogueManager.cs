@@ -53,6 +53,8 @@ public class DialogueManager : MonoBehaviour
     {
         index = 0;
 
+        CollectableManager.instance.itemCollectUI.SetActive(true);
+
         dialogueInputManager.enabled = true;
 
         if (playerInteraction != null)
@@ -132,6 +134,8 @@ public class DialogueManager : MonoBehaviour
 
         animator.SetBool("IsOpen", false);
         isInDialogue = false;
+
+        CollectableManager.instance.itemCollectUI.SetActive(false);
 
         GameMaster.instance.ResumeGame_nst();
 

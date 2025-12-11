@@ -128,8 +128,14 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
                 if (player != null)
                 {
+                    player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
+                    player.gameObject.GetComponent<CharacterController>().enabled = false;
+
                     player.transform.position = data.playerPosition;
                     player.transform.rotation = data.playerRotation;
+
+                    player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
+                    player.gameObject.GetComponent<CharacterController>().enabled = false;
                 }
 
                 // Restore activated/deleted objects
@@ -149,7 +155,25 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                 if (data.hasPlayedStartingCutscene)
                 {
                     // Skip starting cutscene
+                    CutsceneManager.instance.SkipStartingCutscene();
                     loadingScreenObject.SetActive(false);
+
+                    yield return new WaitForSeconds(0.3f);
+
+                    CollectableManager.instance.itemCollectUI.SetActive(true);
+
+                    if (player != null)
+                    {
+                        player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
+                        player.gameObject.GetComponent<CharacterController>().enabled = false;
+
+                        player.transform.position = data.playerPosition;
+                        player.transform.rotation = data.playerRotation;
+
+                        player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
+                        player.gameObject.GetComponent<CharacterController>().enabled = false;
+                    }
+
                     yield return null;
                 }
             }
