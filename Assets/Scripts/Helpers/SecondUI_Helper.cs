@@ -17,6 +17,11 @@ public class SecondUI_Helper : MonoBehaviour
         SaveSystem.instance.SaveGame();
     }
 
+    public void DeleteSave()
+    {
+        SaveSystem.instance.DeleteSave();
+    }
+
     public void RetryLevel()
     {
         Time.timeScale = 1f;
