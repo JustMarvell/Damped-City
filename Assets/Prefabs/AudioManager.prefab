@@ -212,3 +212,10 @@ MonoBehaviour:
       Data3: -1307755377
       Data4: -1447776536
     Path: event:/SFX/EnemyAttack
+  <ENEMY_Curious>k__BackingField:
+    Guid:
+      Data1: 1211985585
+      Data2: 1079843688
+      Data3: -41754219
+      Data4: -1662235232
+    Path: event:/SFX/EnemyCurious

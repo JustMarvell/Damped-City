@@ -16,16 +16,23 @@ public class EnemyManager : MonoBehaviour
     [Space]
 
     public bool isChasingPlayer;
+    public bool isCurious;
     public bool hasAttackedPlayer = false;
+
+    public float chaseSoundExitDelay = 3f;
+    public float curiousSoundExitDelay = 3f;
 
     EventInstance chasingSound;
     EventInstance attackingSound;
+    EventInstance curiousSound;
     PLAYBACK_STATE pLAYBACK_STATE;
+    PLAYBACK_STATE CURIOUS_PLAYBACK_STATE;
 
     public bool enemySpawned = false;
     public float spawnProgress = 0;
 
     public int chasingCount = 0;
+    public int curiousCount = 0;
 
     void Awake()
     {
@@ -39,6 +46,9 @@ public class EnemyManager : MonoBehaviour
 
         attackingSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.ENEMY_Attacking);
         attackingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+        curiousSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.ENEMY_Curious);
+        curiousSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void StartChasing()
@@ -50,6 +60,18 @@ public class EnemyManager : MonoBehaviour
             print("Chasingggg");
             isChasingPlayer = true;
             OnEnemyChase();
+        }
+    }
+
+    public void StartCurious()
+    {
+        curiousCount++;
+
+        if (curiousCount > 0)
+        {
+            print("Curious!");
+            isCurious = true;
+            OnEnemyCurious();
         }
     }
 
@@ -66,6 +88,19 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void StopCurious()
+    {
+        curiousCount--;
+
+        if (curiousCount <= 0)
+        {
+            print("Stop Curious");
+            curiousCount = 0;
+            isCurious = false;
+            OnEnemyCurious();
+        }
+    }
+
     public void ActivateEnemy()
     {
         foreach (EnemyAI_Horror enemy in enemies)
@@ -78,16 +113,50 @@ public class EnemyManager : MonoBehaviour
     {
         if (isChasingPlayer)
         {
-
             chasingSound.getPlaybackState(out pLAYBACK_STATE);
 
             if (pLAYBACK_STATE.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                chasingSound.start();
-            }
+                PlayStopChase();
+            else
+                Invoke(nameof(PlayStopChase), chaseSoundExitDelay);
         }
         else
         {
+            chasingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    void PlayStopChase()
+    {
+        if (pLAYBACK_STATE.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            chasingSound.start();
+            curiousSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    public void OnEnemyCurious()
+    {
+        if (isCurious)
+        {
+            curiousSound.getPlaybackState(out CURIOUS_PLAYBACK_STATE);
+
+            if (CURIOUS_PLAYBACK_STATE.Equals(PLAYBACK_STATE.STOPPED))
+                PlayStopCurious();
+            else
+                Invoke(nameof(PlayStopCurious), curiousSoundExitDelay);
+        }
+        else
+        {
+            curiousSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    void PlayStopCurious()
+    {
+        if (CURIOUS_PLAYBACK_STATE.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            curiousSound.start();
             chasingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
@@ -105,6 +174,11 @@ public class EnemyManager : MonoBehaviour
     public void StopChasingSound()
     {
         chasingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    public void StopCuriousSound()
+    {
+        curiousSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void SpawnEnemy(int enemyCount)

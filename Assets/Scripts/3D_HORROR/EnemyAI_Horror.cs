@@ -4,6 +4,7 @@ using System.Collections;
 using FMODUnity;
 using FMOD.Studio;
 using System.IO.Pipes;
+using Unity.VisualScripting;
 
 public class EnemyAI_Horror : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class EnemyAI_Horror : MonoBehaviour
 
     public delegate void OnChase();
     public OnChase onChaseCallback;
+    public delegate void OnCurious();
+    public OnCurious onCuriousCallback;
 
     void Start()
     {
@@ -67,6 +70,7 @@ public class EnemyAI_Horror : MonoBehaviour
         enemyManager = EnemyManager.instance;
 
         onChaseCallback += enemyManager.OnEnemyChase;
+        onCuriousCallback += enemyManager.OnEnemyCurious;
 
         navAgent.speed = normalSpeed;
 
@@ -112,9 +116,11 @@ public class EnemyAI_Horror : MonoBehaviour
         navAgent.speed = normalSpeed;
         navAgent.isStopped = false;
         lineOfSightDistance = deffLineOfSightDistance + 3;
+        onCuriousCallback?.Invoke();
 
         if (DetectPlayer())
         {
+            onCuriousCallback?.Invoke();
             SetState(EnemyState.Chase);
             return;
         }
@@ -122,6 +128,7 @@ public class EnemyAI_Horror : MonoBehaviour
         if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
             lastKnownPosition = Vector3.zero;
+            onCuriousCallback.Invoke();
             SetState(EnemyState.Idle);
             idleTimer = 0f;
         }
@@ -261,6 +268,7 @@ public class EnemyAI_Horror : MonoBehaviour
         {
             if (lastKnownPosition != Vector3.zero)
             {
+                onChaseCallback?.Invoke();
                 navAgent.SetDestination(lastKnownPosition);
                 SetState(EnemyState.Curious);
             }
@@ -292,12 +300,18 @@ public class EnemyAI_Horror : MonoBehaviour
     public bool wasChasing;
     public bool willBeChasing;
 
+    public bool wasCurious;
+    public bool willCurious;
+
     private void SetState(EnemyState newState)
     {
         if (currentState == newState) return;
 
         wasChasing = currentState == EnemyState.Chase;
         willBeChasing = newState == EnemyState.Chase;
+
+        wasCurious = currentState == EnemyState.Curious;
+        willCurious = newState == EnemyState.Curious;
 
         currentState = newState;
 
@@ -313,6 +327,15 @@ public class EnemyAI_Horror : MonoBehaviour
         if (!wasChasing && willBeChasing)
         { 
             enemyManager.StartChasing();
+        }
+
+        if (wasCurious && !willCurious)
+        {
+            enemyManager.StopCurious();
+        }
+        if (!wasCurious && willCurious)
+        {
+            enemyManager.StartCurious();
         }
 
         string animName = GetAnimationName(newState);
@@ -367,12 +390,14 @@ public class EnemyAI_Horror : MonoBehaviour
         }
             
         onChaseCallback?.Invoke();
+        onCuriousCallback?.Invoke();
 
         if (!captureCamera.activeSelf)
             GameObject.FindGameObjectWithTag("charCam")?.SetActive(false);
         
         playerTransform.GetComponent<StateMachine_3D>().currentState.StopPlayerSounds();
         enemyManager.StopChasingSound();
+        enemyManager.StopCuriousSound();
 
         playerTransform.gameObject.SetActive(false);
         captureCamera.SetActive(true);
