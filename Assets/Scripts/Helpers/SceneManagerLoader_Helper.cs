@@ -138,6 +138,12 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                     player.gameObject.GetComponent<CharacterController>().enabled = false;
                 }
 
+                // enable enemy spawns
+                if (EnemyManager.instance != null)
+                {
+                    EnemyManager.instance.ResetAndEnableEnemy();
+                }
+
                 // Restore activated/deleted objects
                 foreach (string path in data.activatedObjectPaths)
                 {
@@ -165,12 +171,19 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                     {
                         player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
                         player.gameObject.GetComponent<CharacterController>().enabled = false;
+                        player.gameObject.GetComponent<PlayerInput>().enabled = false;
+                        player.gameObject.GetComponent<PlayerInputHandler>().enabled = false;
 
                         player.transform.position = data.playerPosition;
                         player.transform.rotation = data.playerRotation;
 
-                        player.gameObject.GetComponent<StateMachine_3D>().enabled = false;
-                        player.gameObject.GetComponent<CharacterController>().enabled = false;
+                        player.gameObject.GetComponent<StateMachine_3D>().enabled = true;
+                        player.gameObject.GetComponent<CharacterController>().enabled = true;
+                        player.gameObject.GetComponent<PlayerInput>().enabled = true;
+                        player.gameObject.GetComponent<PlayerInputHandler>().enabled = true;
+
+                        player.gameObject.GetComponent<PlayerInteraction_3D>().enabled = true;
+                        player.gameObject.GetComponent<C_CameraController>().enabled = true;
                     }
 
                     loadingScreenObject.SetActive(false);
