@@ -156,7 +156,6 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                 {
                     // Skip starting cutscene
                     CutsceneManager.instance.SkipStartingCutscene();
-                    loadingScreenObject.SetActive(false);
 
                     yield return new WaitForSeconds(0.3f);
 
@@ -174,7 +173,9 @@ public class SceneManagerLoader_Helper : MonoBehaviour
                         player.gameObject.GetComponent<CharacterController>().enabled = false;
                     }
 
-                    yield return null;
+                    loadingScreenObject.SetActive(false);
+                    
+                    yield break;
                 }
             }
         }
