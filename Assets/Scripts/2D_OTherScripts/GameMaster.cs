@@ -152,6 +152,8 @@ public class GameMaster : MonoBehaviour
     {
         if (currentRetryChange <= 0 && !isGameOver)
         {
+            SaveSystem.instance.DeleteSave();
+
             isGameOver = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -173,6 +175,8 @@ public class GameMaster : MonoBehaviour
 
     public void WinGame()
     {
+        SaveSystem.instance.DeleteSave();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
