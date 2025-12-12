@@ -9,9 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Zombie_Mutant_eye
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -37,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a1dd0e5786600e5418d74c09c1d2a988, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -129,7 +130,7 @@ Material:
     - _Curvature_1_C: {r: 0, g: 0, b: 0, a: 0}
     - _Curvature_2_C: {r: 0, g: 0, b: 0, a: 0}
     - _Curvature_3_C: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.41568628, g: 0.047058824, b: 0, a: 1}
     - _SpecColor: {r: 0.7830189, g: 0.15143289, b: 0.15143289, a: 1}
     - _cavity_C: {r: 0, g: 0, b: 0, a: 0}
     - _dirt_C: {r: 0, g: 0, b: 0, a: 0}

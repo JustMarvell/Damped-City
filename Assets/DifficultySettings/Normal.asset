@@ -14,10 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Normal
   enemyCount: 4
-  enemyNormalSpeed: 3
-  enemySprintSpeed: 7
-  enemyLineOfSightDistance: 25
-  enemyDetectionRadius: 25
+  enemyPrefabs:
+  - {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
+  - {fileID: 1224867411520477154, guid: c08cff8448282c6d3bac4200c0e933e1, type: 3}
+  zombie_normalSpeed: 2.5
+  zombie_sprintSpeed: 4
+  zombie_fieldOfViewAngle: 120
+  zombie_lineOfSightDistance: 8
+  zombie_maxWalkRadius: 20
+  zombie_minIdleTime: 5
+  zombie_maxIdleTime: 8
+  zombie_useLineOfSight: 1
+  zombie_chaseMemoryTime: 10
+  zombie_navAgentAcceleration: 4
+  zombie_navAgentAngularSpeed: 90
+  skull_normalSpeed: 5
+  skull_sprintSpeed: 8
+  skull_fieldOfViewAngle: 45
+  skull_lineOfSightDistance: 18
+  skull_maxWalkRadius: 10
+  skull_minIdleTime: 1
+  skull_maxIdleTime: 3
+  skull_useLineOfSight: 1
+  skull_chaseMemoryTime: 4
+  skull_navAgentAcceleration: 12
+  skull_navAgentAngularSpeed: 360
+  scavanger_normalSpeed: 4
+  scavanger_sprintSpeed: 7
+  scavanger_fieldOfViewAngle: 80
+  scavanger_lineOfSightDistance: 12
+  scavanger_maxWalkRadius: 15
+  scavanger_minIdleTime: 2
+  scavanger_maxIdleTime: 6
+  scavanger_useLineOfSight: 0
+  scavanger_chaseMemoryTime: 7
+  scavanger_navAgentAcceleration: 8
+  scavanger_navAgentAngularSpeed: 180
   collectableCount: 15
   playerNormalSpeed: 5
   playerSprintSpeed: 9

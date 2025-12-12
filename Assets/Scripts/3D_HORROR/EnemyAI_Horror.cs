@@ -28,6 +28,8 @@ public class EnemyAI_Horror : MonoBehaviour
     public EnemyType enemyType = EnemyType.MutantZombie;
 
     [Header("Moveslkdfjlaksdfj")]
+    public NavMeshAgent navAgent;
+
     public float normalSpeed = 4f;
     public float sprintSpeed = 6f;
     public float maxWalkRadius = 15f;
@@ -52,7 +54,6 @@ public class EnemyAI_Horror : MonoBehaviour
 
     public float chaseMemoryTime = 6f;
 
-    private NavMeshAgent navAgent;
     private Transform playerTransform;
     [SerializeField] private EnemyState currentState = EnemyState.Roam;
     private float stuckTimer;
@@ -77,8 +78,6 @@ public class EnemyAI_Horror : MonoBehaviour
 
     void Start()
     {
-        navAgent = GetComponent<NavMeshAgent>();
-
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         enemyManager = EnemyManager.instance;
 
@@ -247,29 +246,42 @@ public class EnemyAI_Horror : MonoBehaviour
         }
     }
 
+    private Collider[] overlapCache = new Collider[1];
     bool DetectPlayer()
     {
         if (playerTransform == null) return false;
 
-        Vector3 playerPos = playerTransform.position + Vector3.up * lineOfSightYOffset;
-        Vector3 directionToPlayer = (playerPos - (transform.position + Vector3.up * lineOfSightYOffset)).normalized;
-        float distanceToPlayer = Vector3.Distance(transform.position, playerPos);
+        Vector3 detectionCenter = transform.position + Vector3.up * lineOfSightYOffset;
+        Collider[] hits = Physics.OverlapSphere(detectionCenter, lineOfSightDistance, playerMask);
 
-        if (distanceToPlayer > lineOfSightDistance)
-            return false;
-
-        float angle = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angle > fieldOfViewAngle * 0.5f)
-            return false;
-
-        if (useLineOfSight)
+        foreach (Collider col in hits)
         {
-            return !Physics.Raycast(transform.position + Vector3.up * lineOfSightYOffset, directionToPlayer, distanceToPlayer, obstacleMask);
+            // Check if this collider belongs to the player
+            if (col.transform == playerTransform || col.transform.IsChildOf(playerTransform))
+            {
+                Vector3 directionToPlayer = (col.transform.position - detectionCenter).normalized;
+                float angle = Vector3.Angle(transform.forward, directionToPlayer);
+                if (angle > fieldOfViewAngle * 0.5f)
+                    continue; // Player is behind the enemy → ignore
+
+                if (useLineOfSight)
+                {
+                    Vector3 rayOrigin = transform.position + Vector3.up * lineOfSightYOffset;
+                    Vector3 rayDirection = directionToPlayer;
+                    float rayDistance = Vector3.Distance(rayOrigin, col.ClosestPoint(rayOrigin));
+
+                    if (Physics.Raycast(rayOrigin, rayDirection, rayDistance, obstacleMask))
+                        continue; // Blocked by wall → cannot see
+                }
+
+                // Player is detectable!
+                lastKnownPosition = playerTransform.position;
+                lastSightTime = Time.time;
+                return true;
+            }
         }
-        else
-        {
-            return true; 
-        }
+
+        return false;
     }
 
     void HandleIdle()
@@ -328,38 +340,32 @@ public class EnemyAI_Horror : MonoBehaviour
 
         if (DetectPlayer())
         {
-            onChaseCallback?.Invoke();
-
-            navAgent.SetDestination(playerTransform.position);
             lastKnownPosition = playerTransform.position;
             lastSightTime = Time.time;
-        }
-        else if(Time.time - lastSightTime > chaseMemoryTime)
-        {
-            onChaseCallback?.Invoke();
-
-            switch (enemyType)
-            {
-                case EnemyType.MutantZombie:
-                    SetState(EnemyState.Roam);  // Zombies forget slowly, back to wandering
-                    break;
-                case EnemyType.MutantSkull:
-                case EnemyType.Scavanger:
-                    SetState(EnemyState.Curious);  // Hunters/Scavengers investigate last spot
-                    break;
-            }
-            return;
+            navAgent.SetDestination(playerTransform.position);
         }
         else
         {
-            onChaseCallback?.Invoke();
+            lastKnownPosition = playerTransform.position;
+
+            if (Time.time - lastSightTime > chaseMemoryTime)
+            {
+                onChaseCallback?.Invoke();
+
+                switch (enemyType)
+                {
+                    case EnemyType.MutantZombie:
+                        SetState(EnemyState.Roam);  // Zombies forget slowly, back to wandering
+                        break;
+                    case EnemyType.MutantSkull:
+                    case EnemyType.Scavanger:
+                        SetState(EnemyState.Curious);  // Investigate last spot
+                        break;
+                }
+                return;
+            }
 
             navAgent.SetDestination(lastKnownPosition);
-        }
-
-        if (currentState == EnemyState.Attack)
-        {
-            return;
         }
 
         if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1, playerMask))

@@ -325,6 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7762a63ff511b008a88aa1b229bdc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
+  navAgent: {fileID: 1224867411520477182}
   normalSpeed: 1
   sprintSpeed: 5.5
   maxWalkRadius: 25
@@ -343,6 +345,7 @@ MonoBehaviour:
   respawnPosition: []
   captureCamera: {fileID: 1224867411378913569}
   captureTime: 2.7
+  chaseMemoryTime: 6
   currentState: 1
   animator: {fileID: 9032198638739569121}
   runAlert: {fileID: 0}
@@ -392,7 +395,7 @@ MonoBehaviour:
   EventPlayTrigger: 11
   EventStopTrigger: 12
   AllowFadeout: 1
-  TriggerOnce: 1
+  TriggerOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []

@@ -8,10 +8,7 @@ public class DificultySettings : ScriptableObject
     [Header("Enemy Settings")]
 
     public int enemyCount = 2;
-    public float enemyNormalSpeed = 1f;
-    public float enemySprintSpeed = 5.5f;
-    public float enemyLineOfSightDistance = 15f;
-    public float enemyDetectionRadius = 15f;
+    public GameObject[] enemyPrefabs;
 
     [Header("Enemy Type Settings")]
     [Header("Mutant Zombie")]

@@ -7,8 +7,6 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
-
-    public GameObject[] enemyPrefab;
     public Transform[] enemySpawnPoint;
     public List<EnemyAI_Horror> enemies;
 
@@ -201,8 +199,8 @@ public class EnemyManager : MonoBehaviour
             // do stuff
             for (int y = 0; y < dificultySettings.enemyCount; y++)
             {
-                int r = Random.Range(0, enemyPrefab.Length);
-                enemies.Add(Instantiate(enemyPrefab[r]).GetComponent<EnemyAI_Horror>());
+                int r = Random.Range(0, dificultySettings.enemyPrefabs.Length);
+                enemies.Add(Instantiate(dificultySettings.enemyPrefabs[r]).GetComponent<EnemyAI_Horror>());
             }
 
             for (int i = 0; i < enemies.Count; i++)
