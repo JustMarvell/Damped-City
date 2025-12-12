@@ -62,7 +62,7 @@ public class DifficultyManager : MonoBehaviour
                 _gm = GameMaster.instance;
                 _cm = CollectableManager.instance;
 
-                EnemyManager.instance.SpawnEnemy(dificultySettings.enemyCount);
+                EnemyManager.instance.SpawnEnemy(dificultySettings);
 
                 SetupDifficulty(_enemies, _player, _gm, _cm);
             }

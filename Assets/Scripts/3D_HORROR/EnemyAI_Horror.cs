@@ -17,12 +17,15 @@ public class EnemyAI_Horror : MonoBehaviour
         Curious
     }
 
-    private enum EnemyType
+    public enum EnemyType
     {
         MutantSkull,
         MutantZombie,
         Scavanger
     }
+
+    [Header("Enemy Type")]
+    public EnemyType enemyType = EnemyType.MutantZombie;
 
     [Header("Moveslkdfjlaksdfj")]
     public float normalSpeed = 4f;
@@ -47,6 +50,8 @@ public class EnemyAI_Horror : MonoBehaviour
     public GameObject captureCamera;
     public float captureTime = 2.7f;
 
+    public float chaseMemoryTime = 6f;
+
     private NavMeshAgent navAgent;
     private Transform playerTransform;
     [SerializeField] private EnemyState currentState = EnemyState.Roam;
@@ -61,6 +66,7 @@ public class EnemyAI_Horror : MonoBehaviour
 
     public bool hasAttacked = false;
     private Vector3 lastKnownPosition = Vector3.zero;
+    private float lastSightTime;
 
     EnemyManager enemyManager;
 
@@ -87,6 +93,57 @@ public class EnemyAI_Horror : MonoBehaviour
         deffLineOfSightDistance = lineOfSightDistance;
     }
 
+    public void ApplyEnemyTypeVariations(DificultySettings settings)
+    {
+        switch (enemyType)
+        {
+            case EnemyType.MutantZombie:
+                // Slow, wide blind sweeps, long memory, rare curious
+                normalSpeed = settings.zombie_normalSpeed;
+                sprintSpeed = settings.zombie_sprintSpeed;
+                fieldOfViewAngle = settings.zombie_fieldOfViewAngle;
+                lineOfSightDistance = settings.zombie_lineOfSightDistance;
+                maxWalkRadius = settings.zombie_maxWalkRadius;
+                minIdleTime = settings.zombie_minIdleTime;
+                maxIdleTime = settings.zombie_maxIdleTime;
+                useLineOfSight = settings.zombie_useLineOfSight;
+                chaseMemoryTime = settings.zombie_chaseMemoryTime;
+                navAgent.acceleration = settings.zombie_navAgentAcceleration;
+                navAgent.angularSpeed = settings.zombie_navAgentAngularSpeed;
+                break;
+
+            case EnemyType.MutantSkull:
+                // Fast, narrow/long sight, short memory, quick pivots
+                normalSpeed = settings.skull_normalSpeed;
+                sprintSpeed = settings.skull_sprintSpeed;
+                fieldOfViewAngle = settings.skull_fieldOfViewAngle;
+                lineOfSightDistance = settings.skull_lineOfSightDistance;
+                maxWalkRadius = settings.skull_maxWalkRadius;
+                minIdleTime = settings.skull_minIdleTime;
+                maxIdleTime = settings.skull_maxIdleTime;
+                useLineOfSight = settings.skull_useLineOfSight;
+                chaseMemoryTime = settings.skull_chaseMemoryTime;
+                navAgent.acceleration = settings.skull_navAgentAcceleration;
+                navAgent.angularSpeed = settings.skull_navAgentAngularSpeed;
+                break;
+
+            case EnemyType.Scavanger:
+                // Medium, sound-based (no LOS), erratic pauses, good memory
+                normalSpeed = settings.scavanger_normalSpeed;
+                sprintSpeed = settings.scavanger_sprintSpeed;
+                fieldOfViewAngle = settings.scavanger_fieldOfViewAngle;
+                lineOfSightDistance = settings.scavanger_lineOfSightDistance;
+                maxWalkRadius = settings.scavanger_maxWalkRadius;
+                minIdleTime = settings.scavanger_minIdleTime;
+                maxIdleTime = settings.scavanger_maxIdleTime;
+                useLineOfSight = settings.scavanger_useLineOfSight;
+                chaseMemoryTime = settings.scavanger_chaseMemoryTime;
+                navAgent.acceleration = settings.scavanger_navAgentAcceleration;
+                navAgent.angularSpeed = settings.scavanger_navAgentAngularSpeed;
+                break;
+        }
+    }
+
     void Update()
     {
         if (!navAgent.isOnNavMesh)
@@ -95,6 +152,7 @@ public class EnemyAI_Horror : MonoBehaviour
         if (DetectPlayer() && !hasAttacked)
         {
             lastKnownPosition = playerTransform.position;
+            lastSightTime = Time.time;
             SetState(EnemyState.Chase);
         }
 
@@ -189,31 +247,29 @@ public class EnemyAI_Horror : MonoBehaviour
         }
     }
 
-    Collider[] playerDetects;
-    Vector3 directionToPlayer;
-    float angleToPlayer;
-
     bool DetectPlayer()
     {
         if (playerTransform == null) return false;
 
-        if (!Physics.CheckSphere(transform.position, lineOfSightDistance, playerMask))
+        Vector3 playerPos = playerTransform.position + Vector3.up * lineOfSightYOffset;
+        Vector3 directionToPlayer = (playerPos - (transform.position + Vector3.up * lineOfSightYOffset)).normalized;
+        float distanceToPlayer = Vector3.Distance(transform.position, playerPos);
+
+        if (distanceToPlayer > lineOfSightDistance)
             return false;
 
-        playerDetects = Physics.OverlapSphere(transform.position, lineOfSightDistance, playerMask);
-
-        if (playerDetects == null || playerDetects.Length == 0) // FIX: Proper null/empty check
+        float angle = Vector3.Angle(transform.forward, directionToPlayer);
+        if (angle > fieldOfViewAngle * 0.5f)
             return false;
 
-        directionToPlayer = playerDetects[0].transform.position - transform.position;
-        angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer.normalized); // FIX: Changed to enemy's forward (bug fix for FOV)
-
-        if (angleToPlayer > fieldOfViewAngle / 2f) return false;
-
-        if (Physics.Raycast(transform.position + Vector3.up * lineOfSightYOffset, directionToPlayer.normalized, out RaycastHit hit, lineOfSightDistance, obstacleMask))
-            if (!hit.collider.CompareTag("Player")) return false;
-
-        return true;
+        if (useLineOfSight)
+        {
+            return !Physics.Raycast(transform.position + Vector3.up * lineOfSightYOffset, directionToPlayer, distanceToPlayer, obstacleMask);
+        }
+        else
+        {
+            return true; 
+        }
     }
 
     void HandleIdle()
@@ -266,26 +322,39 @@ public class EnemyAI_Horror : MonoBehaviour
     {
         navAgent.speed = sprintSpeed;
         navAgent.isStopped = false;
-        navAgent.SetDestination(playerTransform.position);
         lineOfSightDistance = deffLineOfSightDistance + 5;
 
         onChaseCallback?.Invoke();
 
-        if (!DetectPlayer())
+        if (DetectPlayer())
         {
-            if (lastKnownPosition != Vector3.zero)
+            onChaseCallback?.Invoke();
+
+            navAgent.SetDestination(playerTransform.position);
+            lastKnownPosition = playerTransform.position;
+            lastSightTime = Time.time;
+        }
+        else if(Time.time - lastSightTime > chaseMemoryTime)
+        {
+            onChaseCallback?.Invoke();
+
+            switch (enemyType)
             {
-                onChaseCallback?.Invoke();
-                navAgent.SetDestination(lastKnownPosition);
-                SetState(EnemyState.Curious);
-            }
-            else
-            {
-                onChaseCallback?.Invoke();
-                SetState(EnemyState.Idle);
-                idleTimer = 0f;
+                case EnemyType.MutantZombie:
+                    SetState(EnemyState.Roam);  // Zombies forget slowly, back to wandering
+                    break;
+                case EnemyType.MutantSkull:
+                case EnemyType.Scavanger:
+                    SetState(EnemyState.Curious);  // Hunters/Scavengers investigate last spot
+                    break;
             }
             return;
+        }
+        else
+        {
+            onChaseCallback?.Invoke();
+
+            navAgent.SetDestination(lastKnownPosition);
         }
 
         if (currentState == EnemyState.Attack)
@@ -320,36 +389,19 @@ public class EnemyAI_Horror : MonoBehaviour
         wasCurious = currentState == EnemyState.Curious;
         willCurious = newState == EnemyState.Curious;
 
-        currentState = newState;
-
-        // if (newState == EnemyState.Chase)
-        //     enemyManager.StartChasing();
-        // else
-        //     enemyManager.StopChasing();
-
         if (wasChasing && !willBeChasing)
-        {
             enemyManager.StopChasing();
-        }
         if (!wasChasing && willBeChasing)
-        { 
             enemyManager.StartChasing();
-        }
 
         if (wasCurious && !willCurious)
-        {
             enemyManager.StopCurious();
-        }
         if (!wasCurious && willCurious)
-        {
             enemyManager.StartCurious();
-        }
 
         string animName = GetAnimationName(newState);
         if (animator != null && !string.IsNullOrEmpty(animName))
-        {
             animator.CrossFade(animName, 0.2f); 
-        }
 
         if (newState == EnemyState.Chase)
         {
@@ -362,10 +414,10 @@ public class EnemyAI_Horror : MonoBehaviour
             if (runAlert != null) runAlert.SetActive(false);
         }
 
+        currentState = newState;
+
         if (!hasAttacked && newState == EnemyState.Attack && Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1, playerMask))
-        {
             StartCoroutine(AttackCoroutine());
-        }
     }
 
     private string GetAnimationName(EnemyState state)

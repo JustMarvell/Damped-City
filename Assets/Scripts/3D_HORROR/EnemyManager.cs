@@ -33,6 +33,9 @@ public class EnemyManager : MonoBehaviour
     public int chasingCount = 0;
     public int curiousCount = 0;
 
+    private HashSet<int> usedIndices = new HashSet<int>();
+    private List<int> availableIndices = new List<int>();
+
     void Awake()
     {
         instance = this;
@@ -180,14 +183,23 @@ public class EnemyManager : MonoBehaviour
         curiousSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
-    public void SpawnEnemy(int enemyCount)
+    public void SpawnEnemy(DificultySettings dificultySettings)
     {
         if (!enemySpawned)
         {
+            // reset bru kse siap index yg mdi pke
+            availableIndices.Clear();
+            for (int i = 0; i < enemySpawnPoint.Length; i++)
+            {
+                availableIndices.Add(i);
+            }
+
+            usedIndices.Clear();
+            
             GameObject rAlert = GameObject.FindGameObjectWithTag("runAlert");
 
             // do stuff
-            for (int y = 0; y < enemyCount; y++)
+            for (int y = 0; y < dificultySettings.enemyCount; y++)
             {
                 int r = Random.Range(0, enemyPrefab.Length);
                 enemies.Add(Instantiate(enemyPrefab[r]).GetComponent<EnemyAI_Horror>());
@@ -196,10 +208,19 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].runAlert = rAlert;
+                enemies[i].ApplyEnemyTypeVariations(dificultySettings);
 
-                enemies[i].transform.parent = enemySpawnPoint[i];
+                if (availableIndices.Count == 0) break;
+
+                int randomIndex = Random.Range(0, availableIndices.Count);
+                int spawnPointIndex = availableIndices[randomIndex];
+                availableIndices.RemoveAt(randomIndex);
+                usedIndices.Add(spawnPointIndex);
+
+                enemies[i].transform.parent = enemySpawnPoint[spawnPointIndex];
                 enemies[i].transform.position = Vector3.zero;
                 enemies[i].transform.localPosition = Vector3.zero;
+
                 enemies[i].gameObject.SetActive(false);
 
                 spawnProgress = i / enemies.Count;
