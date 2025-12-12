@@ -17,6 +17,13 @@ public class EnemyAI_Horror : MonoBehaviour
         Curious
     }
 
+    private enum EnemyType
+    {
+        MutantSkull,
+        MutantZombie,
+        Scavanger
+    }
+
     [Header("Moveslkdfjlaksdfj")]
     public float normalSpeed = 4f;
     public float sprintSpeed = 6f;

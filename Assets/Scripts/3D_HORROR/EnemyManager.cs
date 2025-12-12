@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
@@ -9,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance;
 
 
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
     public Transform[] enemySpawnPoint;
     public List<EnemyAI_Horror> enemies;
 
@@ -190,7 +189,8 @@ public class EnemyManager : MonoBehaviour
             // do stuff
             for (int y = 0; y < enemyCount; y++)
             {
-                enemies.Add(Instantiate(enemyPrefab).GetComponent<EnemyAI_Horror>());
+                int r = Random.Range(0, enemyPrefab.Length);
+                enemies.Add(Instantiate(enemyPrefab[r]).GetComponent<EnemyAI_Horror>());
             }
 
             for (int i = 0; i < enemies.Count; i++)

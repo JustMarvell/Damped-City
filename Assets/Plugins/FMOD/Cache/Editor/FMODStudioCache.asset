@@ -150,7 +150,7 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639010595697193255
+  lastModified: 639011784548230053
   FileSizes:
   - Name: Desktop
     Value: 1524
@@ -263,6 +263,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10500
+--- !u!114 &-4759911487683128191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemySound_MutantZombie
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemySound_MutantZombie
+  Guid:
+    Data1: 554451689
+    Data2: 1341064384
+    Data3: -389644672
+    Data4: -355763002
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 17500
 --- !u!114 &-4614951805748497365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +337,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 19296
   Exists: 1
+--- !u!114 &-4111442230419460105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemySound_Scavanger
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemySound_Scavanger
+  Guid:
+    Data1: 95231012
+    Data2: 1082952682
+    Data3: 2042053292
+    Data4: -937622241
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8740
 --- !u!114 &-3549559725689107952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,10 +514,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639010608474584390
+  lastModified: 639011789618293181
   FileSizes:
   - Name: Desktop
-    Value: 4034208
+    Value: 4398816
   Exists: 1
 --- !u!114 &-2250524954059644898
 MonoBehaviour:
@@ -758,13 +812,16 @@ MonoBehaviour:
   - {fileID: -7369345144379894}
   - {fileID: 6570841166041475172}
   - {fileID: -600695403571262674}
+  - {fileID: 5500830325638205224}
+  - {fileID: -4111442230419460105}
+  - {fileID: -4759911487683128191}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5792970959908087908}
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639010608474584390
+  cacheTime: 639011789618293181
   SerializableEventsDict:
   - key: event:/UI/Slider_Changed
     index: 0
@@ -842,6 +899,12 @@ MonoBehaviour:
     index: 36
   - key: event:/SFX/Meme_KOBOJAWA
     index: 37
+  - key: event:/SFX/EnemySound_MutantSkull
+    index: 38
+  - key: event:/SFX/EnemySound_Scavanger
+    index: 39
+  - key: event:/SFX/EnemySound_MutantZombie
+    index: 40
 --- !u!114 &956430300349746987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,10 +974,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639010595697202111
+  lastModified: 639011784548269958
   FileSizes:
   - Name: Desktop
-    Value: 2846
+    Value: 2994
   Exists: 1
 --- !u!114 &1702687070434076945
 MonoBehaviour:
@@ -1051,6 +1114,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &5500830325638205224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemySound_MutantSkull
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemySound_MutantSkull
+  Guid:
+    Data1: 2100152352
+    Data2: 1238506256
+    Data3: 2109303459
+    Data4: -2010551632
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 21701
 --- !u!114 &5631576724927095890
 MonoBehaviour:
   m_ObjectHideFlags: 0
