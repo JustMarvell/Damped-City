@@ -54,6 +54,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20000
+--- !u!114 &-9083477789748406572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
+  m_EditorClassIdentifier: 
+  Path: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
+  Guid:
+    Data1: -2134286460
+    Data2: 1338784725
+    Data3: -55796311
+    Data4: -1940473603
+  Banks:
+  - {fileID: -2140349036725564189}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39307
 --- !u!114 &-8740994322380894873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +317,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 17500
---- !u!114 &-4614951805748497365
+--- !u!114 &-4742692379107012766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -561,10 +588,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639003380535174473
+  lastModified: 639012234041195231
   FileSizes:
   - Name: Desktop
-    Value: 5847168
+    Value: 7462176
   Exists: 1
 --- !u!114 &-1862917522288626039
 MonoBehaviour:
@@ -674,6 +701,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 60000
+--- !u!114 &-969626315505217135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level/LevelMusic
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level/LevelMusic
+  Guid:
+    Data1: 983040074
+    Data2: 1105437168
+    Data3: -302599012
+    Data4: 493751855
+  Banks:
+  - {fileID: -2140349036725564189}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 110000
 --- !u!114 &-600695403571262674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +755,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8500
+--- !u!114 &-562701295513283771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
+  m_EditorClassIdentifier: 
+  Path: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
+  Guid:
+    Data1: 2007170927
+    Data2: 1139141777
+    Data3: 1009900444
+    Data4: 604079159
+  Banks:
+  - {fileID: -2140349036725564189}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 67000
 --- !u!114 &-328427029512634677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,13 +858,6 @@ MonoBehaviour:
   - {fileID: 6293210146624263305}
   - {fileID: -9213042047558817838}
   - {fileID: 4419081916979804001}
-  - {fileID: 2328070669154594545}
-  - {fileID: 6924781143869624248}
-  - {fileID: 956430300349746987}
-  - {fileID: -4614951805748497365}
-  - {fileID: 2800849503035587149}
-  - {fileID: 7057653988470045434}
-  - {fileID: 5711275958264440972}
   - {fileID: -8740994322380894873}
   - {fileID: -8336294251054263983}
   - {fileID: 1011649825280819099}
@@ -815,13 +889,20 @@ MonoBehaviour:
   - {fileID: 5500830325638205224}
   - {fileID: -4111442230419460105}
   - {fileID: -4759911487683128191}
+  - {fileID: 542122505716744159}
+  - {fileID: 5441921280446424155}
+  - {fileID: -969626315505217135}
+  - {fileID: -562701295513283771}
+  - {fileID: -4742692379107012766}
+  - {fileID: -9083477789748406572}
+  - {fileID: 1351605981154090707}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5792970959908087908}
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639011789618293181
+  cacheTime: 639012234041195231
   SerializableEventsDict:
   - key: event:/UI/Slider_Changed
     index: 0
@@ -829,83 +910,69 @@ MonoBehaviour:
     index: 1
   - key: event:/UI/Button_Click
     index: 2
-  - key: event:/Music/Atmosphere/Atmosphere_Rising_Loop
-    index: 3
-  - key: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
-    index: 4
-  - key: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
-    index: 5
-  - key: event:/AtmosphereQue/Cutscenes/GameOverCutsceneBase
-    index: 6
-  - key: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
-    index: 7
-  - key: event:/Music/Atmosphere/Atmosphere_2
-    index: 8
-  - key: event:/Music/Level/LevelMusic
-    index: 9
   - key: event:/SFX/Interact_MoneyBag
-    index: 10
+    index: 3
   - key: event:/AtmosphereQue/Short_Rising_Que
-    index: 11
+    index: 4
   - key: event:/AtmosphereQue/FloodedGrounds/DeepRattle_3D
-    index: 12
+    index: 5
   - key: event:/AtmosphereQue/FloodedGrounds/Wind_3D
-    index: 13
+    index: 6
   - key: event:/SFX/EnemyAttack
-    index: 14
+    index: 7
   - key: event:/SFX/Meme_MIBOMBO
-    index: 15
+    index: 8
   - key: event:/SFX/Notification_Popup
-    index: 16
+    index: 9
   - key: event:/SFX/Footsteps
-    index: 17
+    index: 10
   - key: event:/SFX/Dialogue_Close
-    index: 18
+    index: 11
   - key: event:/SFX/Dialogue_Typing
-    index: 19
+    index: 12
   - key: event:/SFX/Interact_Default
-    index: 20
+    index: 13
   - key: event:/AtmosphereQue/FloodedGrounds/WindHowl_3D
-    index: 21
+    index: 14
   - key: event:/AtmosphereQue/FloodedGrounds/Horn_3D_Loop
-    index: 22
+    index: 15
   - key: event:/SFX/Interact_HidingEnter
-    index: 23
+    index: 16
   - key: event:/SFX/EnemyCurious
-    index: 24
+    index: 17
   - key: event:/SFX/RunSteps
-    index: 25
+    index: 18
   - key: event:/AtmosphereQue/FloodedGrounds/Background_3D
-    index: 26
+    index: 19
   - key: event:/SFX/Notification_Unpop
-    index: 27
+    index: 20
   - key: event:/SFX/Meme_WIWIWIMotivational
-    index: 28
+    index: 21
   - key: event:/AtmosphereQue/FloodedGrounds/Horn_3D
-    index: 29
+    index: 22
   - key: event:/SFX/Dialogue_Enter
-    index: 30
+    index: 23
   - key: event:/AtmosphereQue/FloodedGrounds/Taps_3D
-    index: 31
+    index: 24
   - key: event:/AtmosphereQue/FloodedGrounds/Water_3D
-    index: 32
+    index: 25
   - key: event:/SFX/EnemyChase
-    index: 33
+    index: 26
   - key: event:/SFX/Interact_HidingExit
-    index: 34
+    index: 27
   - key: event:/AtmosphereQue/FloodedGrounds/LeafRustle_3D
-    index: 35
+    index: 28
   - key: event:/SFX/Interact_Failed
-    index: 36
+    index: 29
   - key: event:/SFX/Meme_KOBOJAWA
-    index: 37
+    index: 30
   - key: event:/SFX/EnemySound_MutantSkull
-    index: 38
+    index: 31
   - key: event:/SFX/EnemySound_Scavanger
-    index: 39
+    index: 32
   - key: event:/SFX/EnemySound_MutantZombie
-    index: 40
---- !u!114 &956430300349746987
+    index: 33
+--- !u!114 &542122505716744159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -915,14 +982,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
+  m_Name: event:/Music/Atmosphere/Atmosphere_Rising_Loop
   m_EditorClassIdentifier: 
-  Path: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
+  Path: event:/Music/Atmosphere/Atmosphere_Rising_Loop
   Guid:
-    Data1: 2007170927
-    Data2: 1139141777
-    Data3: 1009900444
-    Data4: 604079159
+    Data1: -108146687
+    Data2: 1117696644
+    Data3: -1656178032
+    Data4: -1565628107
   Banks:
   - {fileID: -2140349036725564189}
   IsStream: 1
@@ -931,7 +998,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 30669
+  Length: 0
 --- !u!114 &1011649825280819099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,6 +1026,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20000
+--- !u!114 &1351605981154090707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Atmosphere/Atmosphere_2
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Atmosphere/Atmosphere_2
+  Guid:
+    Data1: -1253878801
+    Data2: 1119225568
+    Data3: -1033567084
+    Data4: 1921089918
+  Banks:
+  - {fileID: -2140349036725564189}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 65201
 --- !u!114 &1519322480893761904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,60 +1127,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 774
---- !u!114 &2328070669154594545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Atmosphere/Atmosphere_Rising_Loop
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Atmosphere/Atmosphere_Rising_Loop
-  Guid:
-    Data1: -108146687
-    Data2: 1117696644
-    Data3: -1656178032
-    Data4: -1565628107
-  Banks:
-  - {fileID: -2140349036725564189}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2800849503035587149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
-  m_EditorClassIdentifier: 
-  Path: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
-  Guid:
-    Data1: -2134286460
-    Data2: 1338784725
-    Data3: -55796311
-    Data4: -1940473603
-  Banks:
-  - {fileID: -2140349036725564189}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 39307
 --- !u!114 &4419081916979804001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,6 +1154,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &5441921280446424155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
+  m_EditorClassIdentifier: 
+  Path: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
+  Guid:
+    Data1: -527950275
+    Data2: 1149123605
+    Data3: 761762715
+    Data4: 1000388408
+  Banks:
+  - {fileID: -2140349036725564189}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5069
 --- !u!114 &5500830325638205224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,33 +1235,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20000
---- !u!114 &5711275958264440972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Level/LevelMusic
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Level/LevelMusic
-  Guid:
-    Data1: 983040074
-    Data2: 1105437168
-    Data3: -302599012
-    Data4: 493751855
-  Banks:
-  - {fileID: -2140349036725564189}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 110000
 --- !u!114 &6293210146624263305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,60 +1289,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 90
---- !u!114 &6924781143869624248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
-  m_EditorClassIdentifier: 
-  Path: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
-  Guid:
-    Data1: -527950275
-    Data2: 1149123605
-    Data3: 761762715
-    Data4: 1000388408
-  Banks:
-  - {fileID: -2140349036725564189}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5069
---- !u!114 &7057653988470045434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Atmosphere/Atmosphere_2
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Atmosphere/Atmosphere_2
-  Guid:
-    Data1: -1253878801
-    Data2: 1119225568
-    Data3: -1033567084
-    Data4: 1921089918
-  Banks:
-  - {fileID: -2140349036725564189}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 65201
 --- !u!114 &7146712264439143401
 MonoBehaviour:
   m_ObjectHideFlags: 0
