@@ -60,7 +60,7 @@ public class StateMachine_3D : MonoBehaviour
     {
         currentStamina = maxStamina;
 
-        staminaSlider.maxValue = maxStamina;
+        if (staminaSlider != null) staminaSlider.maxValue = maxStamina;
 
         IsSprinting = false;
         ChangeState(new State_Idle(this));

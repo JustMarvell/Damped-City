@@ -107,6 +107,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  <MUSIC_LevelScene>k__BackingField:
+    Guid:
+      Data1: 983040074
+      Data2: 1105437168
+      Data3: -302599012
+      Data4: 493751855
+    Path: event:/Music/Level/LevelMusic
   <INTERACTABLE_DefaultInteractingSound>k__BackingField:
     Guid:
       Data1: -487232904
@@ -156,6 +163,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  <NOTIFICATION_PopUp>k__BackingField:
+    Guid:
+      Data1: -1991162816
+      Data2: 1337018385
+      Data3: 1449329042
+      Data4: 1918103387
+    Path: event:/SFX/Notification_Popup
   <PLAYER_Footsteps>k__BackingField:
     Guid:
       Data1: -441899195
@@ -170,6 +184,20 @@ MonoBehaviour:
       Data3: -453775199
       Data4: -310168457
     Path: event:/SFX/RunSteps
+  <PLAYER_HidingEnter>k__BackingField:
+    Guid:
+      Data1: 1002723503
+      Data2: 1330514754
+      Data3: 2117940138
+      Data4: 337050046
+    Path: event:/SFX/Interact_HidingEnter
+  <PLAYER_HidingExit>k__BackingField:
+    Guid:
+      Data1: 338328305
+      Data2: 1213347255
+      Data3: -1306749541
+      Data4: -187620817
+    Path: event:/SFX/Interact_HidingExit
   <ENEMY_Chasing>k__BackingField:
     Guid:
       Data1: 1934016491
@@ -184,3 +212,10 @@ MonoBehaviour:
       Data3: -1307755377
       Data4: -1447776536
     Path: event:/SFX/EnemyAttack
+  <ENEMY_Curious>k__BackingField:
+    Guid:
+      Data1: 1211985585
+      Data2: 1079843688
+      Data3: -41754219
+      Data4: -1662235232
+    Path: event:/SFX/EnemyCurious

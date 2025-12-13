@@ -14,12 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hard
   enemyCount: 5
-  enemyNormalSpeed: 3
-  enemySprintSpeed: 9
-  enemyLineOfSightDistance: 25
-  enemyDetectionRadius: 25
-  collectableCount: 20
+  enemyPrefabs:
+  - {fileID: 1224867411520477154, guid: c08cff8448282c6d3bac4200c0e933e1, type: 3}
+  - {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
+  - {fileID: 8953147329018350857, guid: ee91cd33d120cde568305f172467e805, type: 3}
+  zombie_normalSpeed: 2.812
+  zombie_sprintSpeed: 4.613
+  zombie_fieldOfViewAngle: 120
+  zombie_lineOfSightDistance: 9.84
+  zombie_maxWalkRadius: 24
+  zombie_minIdleTime: 6
+  zombie_maxIdleTime: 9
+  zombie_useLineOfSight: 1
+  zombie_chaseMemoryTime: 10
+  zombie_navAgentAcceleration: 4
+  zombie_navAgentAngularSpeed: 90
+  skull_normalSpeed: 5.625
+  skull_sprintSpeed: 9.225
+  skull_fieldOfViewAngle: 45
+  skull_lineOfSightDistance: 22.08
+  skull_maxWalkRadius: 12
+  skull_minIdleTime: 1
+  skull_maxIdleTime: 3
+  skull_useLineOfSight: 1
+  skull_chaseMemoryTime: 4
+  skull_navAgentAcceleration: 12
+  skull_navAgentAngularSpeed: 360
+  scavanger_normalSpeed: 4.5
+  scavanger_sprintSpeed: 8.1
+  scavanger_fieldOfViewAngle: 80
+  scavanger_lineOfSightDistance: 14.72
+  scavanger_maxWalkRadius: 18
+  scavanger_minIdleTime: 2
+  scavanger_maxIdleTime: 6
+  scavanger_useLineOfSight: 0
+  scavanger_chaseMemoryTime: 6.74
+  scavanger_navAgentAcceleration: 8
+  scavanger_navAgentAngularSpeed: 180
+  collectableCount: 18
   playerNormalSpeed: 5
-  playerSprintSpeed: 9
-  staminaRegenRate: 10
+  playerSprintSpeed: 8.5
+  staminaRegenRate: 12
   staminaConsumtionRate: 25

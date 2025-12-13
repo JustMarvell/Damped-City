@@ -22,6 +22,7 @@ public class FMODEvents : MonoBehaviour
     
     [field : Header("Music Sounds")]
     [field : SerializeField] public EventReference MUSIC_MainMenu { get; private set; }
+    [field : SerializeField] public EventReference MUSIC_LevelScene { get; private set; }
 
 
     [field : Header("Interactable Sound")]
@@ -35,11 +36,19 @@ public class FMODEvents : MonoBehaviour
     [field : SerializeField] public EventReference DIALOGUE_DialogueTyping { get; private set; }
     [field : SerializeField] public EventReference DIALOGUE_SkipDialogue { get; private set; }
 
+
+    [field : Header("Notification Sounds")]
+    [field : SerializeField] public EventReference NOTIFICATION_PopUp { get; private set; }
+
+
     [field : Header("Player Sounds")]
     [field : SerializeField] public EventReference PLAYER_Footsteps { get; private set; }
     [field : SerializeField] public EventReference PLAYER_Sprintsteps { get; private set; }
+    [field : SerializeField] public EventReference PLAYER_HidingEnter { get; private set; }
+    [field : SerializeField] public EventReference PLAYER_HidingExit { get; private set; }
 
     [field : Header("Enemy Sounds")]
     [field : SerializeField] public EventReference ENEMY_Chasing { get; private set; }
     [field : SerializeField] public EventReference ENEMY_Attacking { get; private set; }
+    [field : SerializeField] public EventReference ENEMY_Curious { get; private set; }
 }

@@ -32,16 +32,8 @@ public class DifficultyManager : MonoBehaviour
         dificultySettings = dificulty;
     }
 
-    void SetupDifficulty(List<EnemyAI_Horror> enemies, StateMachine_3D player, GameMaster gm, CollectableManager cm)
+    void SetupDifficulty(StateMachine_3D player, GameMaster gm, CollectableManager cm)
     {
-        foreach (EnemyAI_Horror enemy in enemies)
-        {
-            enemy.normalSpeed = dificultySettings.enemyNormalSpeed;
-            enemy.sprintSpeed = dificultySettings.enemySprintSpeed;
-            enemy.lineOfSightDistance = dificultySettings.enemyLineOfSightDistance;
-            enemy.maxWalkRadius = dificultySettings.enemyDetectionRadius;
-        }
-
         player.normalSpeed = dificultySettings.playerNormalSpeed;
         player.sprintSpeed = dificultySettings.playerSprintSpeed;
         player.staminaRegenRate = dificultySettings.staminaRegenRate;
@@ -62,9 +54,9 @@ public class DifficultyManager : MonoBehaviour
                 _gm = GameMaster.instance;
                 _cm = CollectableManager.instance;
 
-                EnemyManager.instance.SpawnEnemy(dificultySettings.enemyCount);
+                EnemyManager.instance.SpawnEnemy(dificultySettings);
 
-                SetupDifficulty(_enemies, _player, _gm, _cm);
+                SetupDifficulty(_player, _gm, _cm);
             }
         }
     }

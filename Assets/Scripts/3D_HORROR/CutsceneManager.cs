@@ -26,6 +26,15 @@ public class CutsceneManager : MonoBehaviour
         gameRetryCutscene.Play();
     }
 
+    public void SkipStartingCutscene()
+    {
+        startingCutscene.Stop();
+
+        startingCutscene.initialTime = startingCutscene.duration - 0.2f;
+
+        startingCutscene.Play();
+    }
+
     public void PlayStartingCutscene()
     {
         startingCutscene.Stop();

@@ -12,6 +12,8 @@ public abstract class CharacterState_3D
     public Camera cam;
     public EventInstance footsteps;
     public EventInstance sprintsteps;
+    public EventInstance hidingEnter;
+    public EventInstance hidingExit;
 
     public CharacterState_3D(StateMachine_3D _statemachine)
     {
@@ -23,6 +25,8 @@ public abstract class CharacterState_3D
 
         footsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.PLAYER_Footsteps);
         sprintsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.PLAYER_Sprintsteps);
+        hidingEnter = AudioManager.instance.CreateEventInstance(FMODEvents.instance.PLAYER_HidingEnter);
+        hidingExit = AudioManager.instance.CreateEventInstance(FMODEvents.instance.PLAYER_HidingExit);
     }
 
     public virtual void EnterState() {}
