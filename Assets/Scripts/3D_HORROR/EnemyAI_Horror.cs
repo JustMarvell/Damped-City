@@ -96,7 +96,7 @@ public class EnemyAI_Horror : MonoBehaviour
         onChaseCallback += enemyManager.OnEnemyChase;
         onCuriousCallback += enemyManager.OnEnemyCurious;
 
-        SetState(EnemyState.Roam);
+        SetState(EnemyState.Roam, true);
         SetRandomDestination();
         deffLineOfSightDistance = lineOfSightDistance;
     }
@@ -188,7 +188,7 @@ public class EnemyAI_Horror : MonoBehaviour
             stuckTimer  += Time.deltaTime;
             if (stuckTimer > maxStuckTime)
             {
-                SetState(EnemyState.Roam);
+                SetState(EnemyState.Roam, true);
                 SetRandomDestination();
                 stuckTimer = 0;
             }
@@ -201,53 +201,80 @@ public class EnemyAI_Horror : MonoBehaviour
         // Weeping override
         if (enemyType == EnemyType.Weeping)
         {
-            if (IsPlayerLookingAtMe())
+            if (IsInDetectionDistance())
             {
-                // freeze sdflksd
-                lastLookTime = Time.time;
-                navAgent.isStopped = true;
-                navAgent.velocity = Vector3.zero;
-                navAgent.ResetPath();
-
-                animator.CrossFade("Idle", 0.1f); // pke idle dlu, nanti ganti
-                return;
-            }
-            else
-            {
-                // grace period (tllu susah kl nda ada)
-                if (lastLookTime < 0f || Time.time - lastLookTime > blinkGraceTime)
+                if (IsPlayerLookingAtMe())
                 {
-                    // chase player
-                    navAgent.isStopped = false;
-                    navAgent.speed = sprintSpeed;
-                    navAgent.SetDestination(playerTransform.position);
+                    // freeze sdflksd
+                    lastLookTime = Time.time;
+                    navAgent.isStopped = true;
+                    navAgent.velocity = Vector3.zero;
+                    navAgent.ResetPath();
 
-                    if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1f, playerMask))
-                    {
-                        StartCoroutine(AttackCoroutine());
-                        return;
-                    }
+                    SetState(EnemyState.Idle, false);
 
-                    IS_SEEING_PLAYER = true;
-                    if (lookAlert != null) lookAlert.SetActive(true);
+                    // freeze animation
+                    animator.speed = 0f;
+
+                    if (lookAlert != null) lookAlert.SetActive(false);
+                    
+                    onChaseCallback?.Invoke();
+                    return;
                 }
                 else
                 {
-                    // During grace: Still frozen (simulate blink)
-                    navAgent.isStopped = true;
-                    navAgent.velocity = Vector3.zero;
-                    animator.CrossFade("Idle", 0.1f);
-                }
+                    onChaseCallback?.Invoke();
+                    // grace period (tllu susah kl nda ada)
+                    if (lastLookTime < 0f || Time.time - lastLookTime > blinkGraceTime)
+                    {
+                        // chase player
+                        if (lookAlert != null) lookAlert.SetActive(true);
+                        navAgent.isStopped = false;
+                        navAgent.speed = sprintSpeed;
+                        navAgent.SetDestination(playerTransform.position);
+                        animator.speed = 1f;
+                        SetState(EnemyState.Chase, true);
 
-                return;  // Skip states
+                        if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1f, playerMask))
+                        {
+                            StartCoroutine(AttackCoroutine());
+                            return;
+                        }
+
+                        IS_SEEING_PLAYER = true;
+                    }
+                    else
+                    {
+                        // During grace: Still frozen (simulate blink)
+                        navAgent.isStopped = true;
+                        navAgent.velocity = Vector3.zero;
+                        SetState(EnemyState.Idle, true);
+                        animator.speed = 0f;
+                        if (lookAlert != null) lookAlert.SetActive(false);
+                    }
+
+                    return;  // Skip states
+                }
             }
+            else
+            {
+                if (lookAlert != null) lookAlert.SetActive(false);
+
+                navAgent.isStopped = true;
+                navAgent.velocity = Vector3.zero;
+                navAgent.ResetPath();
+                SetState(EnemyState.Idle, true);
+                animator.speed = 0f;
+            }
+
+            return;
         }
 
         if (DetectPlayer() && !hasAttacked)
         {
             lastKnownPosition = playerTransform.position;
             lastSightTime = Time.time;
-            SetState(EnemyState.Chase);
+            SetState(EnemyState.Chase, true);
         }
 
         switch (currentState)
@@ -273,7 +300,6 @@ public class EnemyAI_Horror : MonoBehaviour
         {
             IS_SEEING_PLAYER = false;
             if (runAlert != null) runAlert.SetActive(false);
-            if (lookAlert != null) lookAlert.SetActive(false);
         }
     }
 
@@ -287,7 +313,7 @@ public class EnemyAI_Horror : MonoBehaviour
         if (DetectPlayer())
         {
             onCuriousCallback?.Invoke();
-            SetState(EnemyState.Chase);
+            SetState(EnemyState.Chase, true);
             return;
         }
 
@@ -295,7 +321,7 @@ public class EnemyAI_Horror : MonoBehaviour
         {
             lastKnownPosition = Vector3.zero;
             onCuriousCallback.Invoke();
-            SetState(EnemyState.Idle);
+            SetState(EnemyState.Idle, true);
             idleTimer = 0f;
         }
     }
@@ -388,15 +414,25 @@ public class EnemyAI_Horror : MonoBehaviour
         return true;
     }
 
+    private bool IsInDetectionDistance()
+    {
+        if (playerCamera == null)
+            return false;
+
+        float distanceToAngel = Vector3.Distance(playerCamera.position, transform.position);
+        if (distanceToAngel < lineOfSightDistance)
+            return true;
+        
+        return false;
+    }
+
     private bool IsPlayerLookingAtMe()
     {
         if (playerCamera == null || enemyCollider == null)
             return false;
 
         float distanceToAngel = Vector3.Distance(playerCamera.position, transform.position);
-        if (distanceToAngel > lineOfSightDistance)
-            return false;
-            
+
         // Direction from player camera to angel
         Vector3 dirToAngel = (transform.position - playerCamera.position).normalized;
 
@@ -424,7 +460,7 @@ public class EnemyAI_Horror : MonoBehaviour
         float idleDuration = Random.Range(minIdleTime, maxIdleTime);
         if (idleTimer >= idleDuration)
         {
-            SetState(EnemyState.Roam);
+            SetState(EnemyState.Roam, true);
             idleTimer = 0f;
         }
     }
@@ -441,7 +477,7 @@ public class EnemyAI_Horror : MonoBehaviour
 
         if (HasArrived())
         {
-            SetState(EnemyState.Idle);
+            SetState(EnemyState.Idle, true);
             idleTimer = 0f;
             return;
         }
@@ -477,11 +513,11 @@ public class EnemyAI_Horror : MonoBehaviour
                 switch (enemyType)
                 {
                     case EnemyType.MutantZombie:
-                        SetState(EnemyState.Roam);  // Zombies forget slowly, back to wandering
+                        SetState(EnemyState.Roam, true);  // Zombies forget slowly, back to wandering
                         break;
                     case EnemyType.MutantSkull:
                     case EnemyType.Scavanger:
-                        SetState(EnemyState.Curious);  // Investigate last spot
+                        SetState(EnemyState.Curious, true);  // Investigate last spot
                         break;
                 }
                 return;
@@ -494,7 +530,7 @@ public class EnemyAI_Horror : MonoBehaviour
 
         if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1, playerMask))
         {
-            SetState(EnemyState.Attack);
+            SetState(EnemyState.Attack, true);
         }
     }
 
@@ -509,7 +545,7 @@ public class EnemyAI_Horror : MonoBehaviour
     public bool wasCurious;
     public bool willCurious;
 
-    private void SetState(EnemyState newState)
+    private void SetState(EnemyState newState, bool crosfadeAnimation)
     {
         if (currentState == newState) return;
 
@@ -530,7 +566,7 @@ public class EnemyAI_Horror : MonoBehaviour
             enemyManager.StartCurious();
 
         string animName = GetAnimationName(newState);
-        if (animator != null && !string.IsNullOrEmpty(animName))
+        if (animator != null && !string.IsNullOrEmpty(animName) && crosfadeAnimation)
             animator.CrossFade(animName, 0.2f); 
 
         if (newState == EnemyState.Chase)
@@ -594,7 +630,7 @@ public class EnemyAI_Horror : MonoBehaviour
         captureCamera.SetActive(false);
 
         GameMaster.instance.GameOver();
-        SetState(EnemyState.Idle);
+        SetState(EnemyState.Idle, true);
     }
 
     void OnDrawGizmosSelected()
