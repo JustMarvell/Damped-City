@@ -18260,7 +18260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slow Walk, Normal Sprint, Wide FOV, Low Range
+  m_text: 'Fast '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0777519433874528cb55ccbc63f99d3b, type: 2}
   m_sharedMaterial: {fileID: 4733961761210881671, guid: 0777519433874528cb55ccbc63f99d3b, type: 2}
@@ -66782,17 +66782,20 @@ MonoBehaviour:
   monsters:
   - prefab: {fileID: 3764209955449736013, guid: a643ed8b6f5113e178e8b36a35646fdf, type: 3}
     name: MUTANT ZOMBIE
-    description: Slow Walk, Moderate Sprint, Wide FOV, Moderate Range
+    description: 'Slow Walk, Moderate Sprint, Wide FOV, Moderate Range [Difficulty
+      : Easy - Nightmare]'
   - prefab: {fileID: 1224867411520477154, guid: f7880d15eee5505709eadb52330249ef, type: 3}
     name: MUTANT SKULL
-    description: Fast Walk, Fast Sprint, Small FOV, Low Range
+    description: 'Fast Walk, Fast Sprint, Small FOV, Low Range [Difficulty : Easy
+      - Nightmare]'
   - prefab: {fileID: 8953147329018350857, guid: c9c45e21e1c6fa5008e98fcbed01ce89, type: 3}
     name: SCAVANGER
-    description: Slow Walk, Fast Sprint, Wide FOV, Long Range, No LOS
+    description: 'Slow Walk, Fast Sprint, Wide FOV, Long Range, No LOS [Difficulty
+      : Hard - Nightmare]'
   - prefab: {fileID: 4220241968065481858, guid: 49fc89bb78d4a00f79a79d696aec17b9, type: 3}
     name: STONE DEMON
-    description: Fast Sprint, Full FOV, Long Range, Can See Through wall, Freeze
-      when Looked by player
+    description: 'Fast Sprint, Full FOV, Long Range, Can See Through wall, Freeze
+      when Looked by player [Difficulty : Hard - Nightmare]'
   nameText: {fileID: 633400699}
   descText: {fileID: 354395982}
   nextButton: {fileID: 76975912}

@@ -1291,7 +1291,7 @@ MonoBehaviour:
   angelDirAngle: 1.2
   blinkGraceTime: 0.2
   playerFOVForFreeze: 70
-  animationSpeed: 1.8
+  animationSpeed: 2
   respawnPosition: []
   captureCamera: {fileID: 4220241968729354511}
   captureTime: 2.7
