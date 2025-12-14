@@ -50,6 +50,20 @@ public class DificultySettings : ScriptableObject
     public float scavanger_navAgentAcceleration = 8f;
     public float scavanger_navAgentAngularSpeed = 180f;
 
+    [Header("Weeping")]
+    public float weeping_normalSpeed = 0f;
+    public float weeping_sprintSpeed = 30f;
+    public float weeping_fieldOfViewAngle = 360f;
+    public float weeping_lineOfSightDistance = 30f;
+    public float weeping_maxWalkRadius = 30; 
+    public float weeping_minIdleTime = 0f;
+    public float weeping_maxIdleTime = 0f;
+    public float weeping_chaseMemoryTime = 2f;
+    public bool weeping_useLineOfSight = false;
+    public float weeping_navAgentAcceleration = 50f;
+    public float weeping_navAgentAngularSpeed = 720f;
+    public float weeping_navAgentStoppingDistance = 2f;
+
     [Header("Objective Settings")]
     public int collectableCount = 15;
 
