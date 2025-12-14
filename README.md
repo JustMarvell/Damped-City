@@ -11,5 +11,10 @@ Status : **_Done_**
 Monster used based on : **Zombie Mutant** in [Unity Assets Store](https://assetstore.unity.com/packages/3d/characters/humanoids/zombie-mutant-free-310842)<br>
 NPC used based on : **Beard man in jeans and shirt** in [Unity Assets Store](https://assetstore.unity.com/packages/3d/characters/humanoids/humans/beard-man-in-jeans-and-shirt-221725)
 
+
+> [!Tip]
+> Game is available to download in [**_Itch.io_**](https://vellosaurus.itch.io/damped-city)
+
+
 > [!Warning]
 > For any Feedback, Bugs, or Questions. Please open a new Issue [**_Here_**](https://github.com/JustMarvell/Damped-City/issues)
