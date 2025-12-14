@@ -66788,7 +66788,11 @@ MonoBehaviour:
     description: Fast Walk, Fast Sprint, Small FOV, Low Range
   - prefab: {fileID: 8953147329018350857, guid: c9c45e21e1c6fa5008e98fcbed01ce89, type: 3}
     name: SCAVANGER
-    description: Slow Walk, Fast Sprint, Wide FOV, Wide Range, No LOS
+    description: Slow Walk, Fast Sprint, Wide FOV, Long Range, No LOS
+  - prefab: {fileID: 4220241968065481858, guid: 49fc89bb78d4a00f79a79d696aec17b9, type: 3}
+    name: STONE DEMON
+    description: Fast Sprint, Full FOV, Long Range, Can See Through wall, Freeze
+      when Looked by player
   nameText: {fileID: 633400699}
   descText: {fileID: 354395982}
   nextButton: {fileID: 76975912}

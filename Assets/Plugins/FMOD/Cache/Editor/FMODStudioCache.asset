@@ -177,7 +177,7 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639011784548230053
+  lastModified: 639013424548665919
   FileSizes:
   - Name: Desktop
     Value: 1524
@@ -236,6 +236,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 30000
+--- !u!114 &-5110735210229199196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/EnemySound_Weeping
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/EnemySound_Weeping
+  Guid:
+    Data1: -1722523910
+    Data2: 1180725151
+    Data3: 136203137
+    Data4: 2079070124
+  Banks:
+  - {fileID: -2303084522546923632}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9498
 --- !u!114 &-4939275898658496328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,10 +568,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639012438073741959
+  lastModified: 639013427137120860
   FileSizes:
   - Name: Desktop
-    Value: 4398816
+    Value: 4477472
   Exists: 1
 --- !u!114 &-2250524954059644898
 MonoBehaviour:
@@ -896,13 +923,14 @@ MonoBehaviour:
   - {fileID: -4742692379107012766}
   - {fileID: -9083477789748406572}
   - {fileID: 1351605981154090707}
+  - {fileID: -5110735210229199196}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5792970959908087908}
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639012438073741959
+  cacheTime: 639013427137120860
   SerializableEventsDict:
   - key: event:/UI/Slider_Changed
     index: 0
@@ -986,6 +1014,8 @@ MonoBehaviour:
     index: 39
   - key: event:/Music/Atmosphere/Atmosphere_2
     index: 40
+  - key: event:/SFX/EnemySound_Weeping
+    index: 41
 --- !u!114 &542122505716744159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,10 +1112,10 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639011784548269958
+  lastModified: 639013424548697636
   FileSizes:
   - Name: Desktop
-    Value: 2994
+    Value: 3032
   Exists: 1
 --- !u!114 &1702687070434076945
 MonoBehaviour:

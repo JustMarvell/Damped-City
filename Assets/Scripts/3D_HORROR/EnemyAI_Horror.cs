@@ -51,6 +51,7 @@ public class EnemyAI_Horror : MonoBehaviour
     public float blinkGraceTime = 0.2f;  // NEW: Seconds of "blink" tolerance before blitz
     private float lastLookTime = -1f;  // NEW: Time when player last looked
     public float playerFOVForFreeze = 70f;
+    public float animationSpeed = 1.8f;
 
     [Header("Rewspawn")]
     public Transform[] respawnPosition;
@@ -232,10 +233,18 @@ public class EnemyAI_Horror : MonoBehaviour
                         navAgent.isStopped = false;
                         navAgent.speed = sprintSpeed;
                         navAgent.SetDestination(playerTransform.position);
-                        animator.speed = 1f;
+                        animator.speed = animationSpeed;
                         SetState(EnemyState.Chase, true);
 
-                        if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1f, playerMask))
+                        // if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1f, playerMask))
+                        // {
+                        //     StartCoroutine(AttackCoroutine());
+                        //     return;
+                        // }
+
+                        // start attack couroutine if player's distance is within stopping distance
+                        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+                        if (distanceToPlayer <= navAgent.stoppingDistance + 1f)
                         {
                             StartCoroutine(AttackCoroutine());
                             return;
@@ -572,12 +581,12 @@ public class EnemyAI_Horror : MonoBehaviour
         if (newState == EnemyState.Chase)
         {
             IS_SEEING_PLAYER = true;
-            if (runAlert != null) runAlert.SetActive(true);
+            if (runAlert != null && enemyType != EnemyType.Weeping) runAlert.SetActive(true);
         }
         else
         {
             IS_SEEING_PLAYER = false;
-            if (runAlert != null) runAlert.SetActive(false);
+            if (runAlert != null && enemyType != EnemyType.Weeping) runAlert.SetActive(false);
         }
 
         currentState = newState;
