@@ -48,6 +48,9 @@ public class EnemyAI_Horror : MonoBehaviour
 
     [Header("Weeping")]
     public float angelDirAngle = 0.95f;
+    public float blinkGraceTime = 0.2f;  // NEW: Seconds of "blink" tolerance before blitz
+    private float lastLookTime = -1f;  // NEW: Time when player last looked
+    public float playerFOVForFreeze = 70f;
 
     [Header("Rewspawn")]
     public Transform[] respawnPosition;
@@ -201,6 +204,7 @@ public class EnemyAI_Horror : MonoBehaviour
             if (IsPlayerLookingAtMe())
             {
                 // freeze sdflksd
+                lastLookTime = Time.time;
                 navAgent.isStopped = true;
                 navAgent.velocity = Vector3.zero;
                 navAgent.ResetPath();
@@ -210,19 +214,30 @@ public class EnemyAI_Horror : MonoBehaviour
             }
             else
             {
-                // chase player
-                navAgent.isStopped = false;
-                navAgent.speed = sprintSpeed;
-                navAgent.SetDestination(playerTransform.position);
-
-                if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1f, playerMask))
+                // grace period (tllu susah kl nda ada)
+                if (lastLookTime < 0f || Time.time - lastLookTime > blinkGraceTime)
                 {
-                    StartCoroutine(AttackCoroutine());
-                    return;
-                }
+                    // chase player
+                    navAgent.isStopped = false;
+                    navAgent.speed = sprintSpeed;
+                    navAgent.SetDestination(playerTransform.position);
 
-                IS_SEEING_PLAYER = true;
-                if (lookAlert != null) lookAlert.SetActive(true);
+                    if (Physics.CheckSphere(transform.position, navAgent.stoppingDistance + 1f, playerMask))
+                    {
+                        StartCoroutine(AttackCoroutine());
+                        return;
+                    }
+
+                    IS_SEEING_PLAYER = true;
+                    if (lookAlert != null) lookAlert.SetActive(true);
+                }
+                else
+                {
+                    // During grace: Still frozen (simulate blink)
+                    navAgent.isStopped = true;
+                    navAgent.velocity = Vector3.zero;
+                    animator.CrossFade("Idle", 0.1f);
+                }
 
                 return;  // Skip states
             }
@@ -381,15 +396,23 @@ public class EnemyAI_Horror : MonoBehaviour
         if (playerCamera == null || enemyCollider == null)
             return false;
 
+        // Direction from player camera to angel
         Vector3 dirToAngel = (transform.position - playerCamera.position).normalized;
-        if (Vector3.Dot(playerCamera.forward, dirToAngel) < angelDirAngle)
-            return false;
+        float distanceToAngel = Vector3.Distance(playerCamera.position, transform.position);
 
-        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, lineOfSightDistance))
-            return (hit.collider == enemyCollider || hit.collider.transform == transform);
+        // Check if angel is WITHIN player's FOV cone (wider, more forgiving)
+        float angleToAngel = Vector3.Angle(playerCamera.forward, dirToAngel);
+        if (angleToAngel > playerFOVForFreeze * 0.5f)
+            return false;  // Outside peripheral vision
         
-        return false;
+        // Line of sight: Raycast from camera to angel center (must hit enemy, no walls)
+        Ray ray = new Ray(playerCamera.position, dirToAngel);
+        if (Physics.Raycast(ray, out RaycastHit hit, distanceToAngel, obstacleMask))
+        {
+            return hit.collider == enemyCollider || hit.collider.transform == transform;
+        }
+
+        return false;  // Obstructed or too far
     }
 
     void HandleIdle()
