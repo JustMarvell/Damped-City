@@ -195,6 +195,7 @@ public class EnemyManager : MonoBehaviour
             usedIndices.Clear();
             
             GameObject rAlert = GameObject.FindGameObjectWithTag("runAlert");
+            GameObject lAlert = GameObject.FindGameObjectWithTag("lookAlert");
 
             // do stuff
             for (int y = 0; y < dificultySettings.enemyCount; y++)
@@ -205,7 +206,8 @@ public class EnemyManager : MonoBehaviour
 
             for (int i = 0; i < enemies.Count; i++)
             {
-                enemies[i].runAlert = rAlert;
+                enemies[i].runAlert = rAlert != null ? rAlert : null;
+                enemies[i].lookAlert = lAlert != null ? lAlert : null;
                 enemies[i].ApplyEnemyTypeVariations(dificultySettings);
 
                 if (availableIndices.Count == 0) break;
@@ -226,6 +228,7 @@ public class EnemyManager : MonoBehaviour
 
 
             rAlert.SetActive(false);
+            lAlert.SetActive(false);
             // finished doing stuff
             enemySpawned = true;
         }

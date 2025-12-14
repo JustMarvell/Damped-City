@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - runAlert
   - charCam
+  - lookAlert
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Props
   - Ground
   - HidingPlace
-  - 
+  - BLOCKERCUBE
   - 
   - 
   - 

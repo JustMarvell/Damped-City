@@ -42,8 +42,6 @@ public class CollectableManager : MonoBehaviour
             inventory = Inventory.instance;
             inventory.onItemChangedCallback += UpdateItemNumber;
         }
-
-        SpawnCollectable();
     }
 
     void UpdateItemNumber()
@@ -61,7 +59,7 @@ public class CollectableManager : MonoBehaviour
         }
     }
     
-    void SpawnCollectable()
+    public void SpawnCollectable(int numberToSpawn)
     {
         if (!isSpawned)
         {
@@ -75,7 +73,7 @@ public class CollectableManager : MonoBehaviour
             usedIndices.Clear();
 
             // acak n pilih index random
-            for (int i = 0; i < numberOfItemToCollect; i++)
+            for (int i = 0; i < numberToSpawn; i++)
             {
                 if (availableIndices.Count == 0) break;
 
@@ -88,7 +86,7 @@ public class CollectableManager : MonoBehaviour
                 Transform spawnPoint = spawnPoints[spawnPointIndex];
                 Instantiate(itemToCollect.itemPrefab, spawnPoint.position, spawnPoint.rotation);
 
-                spawnProgress = i / numberOfItemToCollect;
+                spawnProgress = i / numberToSpawn;
             }
 
             isSpawned = true;

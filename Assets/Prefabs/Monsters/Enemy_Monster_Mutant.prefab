@@ -338,7 +338,7 @@ MonoBehaviour:
   fieldOfViewAngle: 240
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 2097921
+    m_Bits: 2098433
   playerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -401,7 +401,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 0.5
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 12
 --- !u!1 &9032198638730200193
 GameObject:
   m_ObjectHideFlags: 0
