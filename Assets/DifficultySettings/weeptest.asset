@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e595a47ab350adb09af72426b691a18b, type: 3}
+  m_Name: weeptest
+  m_EditorClassIdentifier: 
+  name: Normal
+  enemyCount: 3
+  enemyPrefabs:
+  - {fileID: 8953147329018350857, guid: 1d223e1cbed658362a5e9981b4b21471, type: 3}
+  zombie_normalSpeed: 2.5
+  zombie_sprintSpeed: 4
+  zombie_fieldOfViewAngle: 240
+  zombie_lineOfSightDistance: 12
+  zombie_maxWalkRadius: 20
+  zombie_minIdleTime: 5
+  zombie_maxIdleTime: 8
+  zombie_useLineOfSight: 1
+  zombie_chaseMemoryTime: 10
+  zombie_navAgentAcceleration: 4
+  zombie_navAgentAngularSpeed: 90
+  skull_normalSpeed: 5
+  skull_sprintSpeed: 8
+  skull_fieldOfViewAngle: 90
+  skull_lineOfSightDistance: 25
+  skull_maxWalkRadius: 10
+  skull_minIdleTime: 1
+  skull_maxIdleTime: 3
+  skull_useLineOfSight: 1
+  skull_chaseMemoryTime: 4
+  skull_navAgentAcceleration: 12
+  skull_navAgentAngularSpeed: 360
+  scavanger_normalSpeed: 4
+  scavanger_sprintSpeed: 7
+  scavanger_fieldOfViewAngle: 80
+  scavanger_lineOfSightDistance: 12
+  scavanger_maxWalkRadius: 15
+  scavanger_minIdleTime: 2
+  scavanger_maxIdleTime: 6
+  scavanger_useLineOfSight: 0
+  scavanger_chaseMemoryTime: 7
+  scavanger_navAgentAcceleration: 8
+  scavanger_navAgentAngularSpeed: 180
+  weeping_normalSpeed: 0
+  weeping_sprintSpeed: 9
+  weeping_fieldOfViewAngle: 360
+  weeping_lineOfSightDistance: 30
+  weeping_maxWalkRadius: 30
+  weeping_minIdleTime: 0
+  weeping_maxIdleTime: 0
+  weeping_chaseMemoryTime: 2
+  weeping_useLineOfSight: 0
+  weeping_navAgentAcceleration: 50
+  weeping_navAgentAngularSpeed: 720
+  weeping_navAgentStoppingDistance: 2
+  collectableCount: 15
+  playerNormalSpeed: 5
+  playerSprintSpeed: 9
+  staminaRegenRate: 15
+  staminaConsumtionRate: 20
