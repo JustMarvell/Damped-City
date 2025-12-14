@@ -21,7 +21,8 @@ public class EnemyAI_Horror : MonoBehaviour
     {
         MutantSkull,
         MutantZombie,
-        Scavanger
+        Scavanger,
+        Weeping
     }
 
     [Header("Enemy Type")]
@@ -246,42 +247,50 @@ public class EnemyAI_Horror : MonoBehaviour
         }
     }
 
-    private Collider[] overlapCache = new Collider[1];
+    private Collider[] overlapCache = new Collider[10];
     bool DetectPlayer()
     {
         if (playerTransform == null) return false;
 
         Vector3 detectionCenter = transform.position + Vector3.up * lineOfSightYOffset;
         Collider[] hits = Physics.OverlapSphere(detectionCenter, lineOfSightDistance, playerMask);
+        
+        int hitCount = Physics.OverlapSphereNonAlloc(detectionCenter, lineOfSightDistance, overlapCache, playerMask);
 
-        foreach (Collider col in hits)
+        bool playerInRange = false;
+        for (int i = 0; i < hitCount; i++)
         {
-            // Check if this collider belongs to the player
+            Collider col = overlapCache[i];
             if (col.transform == playerTransform || col.transform.IsChildOf(playerTransform))
             {
-                Vector3 directionToPlayer = (col.transform.position - detectionCenter).normalized;
-                float angle = Vector3.Angle(transform.forward, directionToPlayer);
-                if (angle > fieldOfViewAngle * 0.5f)
-                    continue; // Player is behind the enemy → ignore
-
-                if (useLineOfSight)
-                {
-                    Vector3 rayOrigin = transform.position + Vector3.up * lineOfSightYOffset;
-                    Vector3 rayDirection = directionToPlayer;
-                    float rayDistance = Vector3.Distance(rayOrigin, col.ClosestPoint(rayOrigin));
-
-                    if (Physics.Raycast(rayOrigin, rayDirection, rayDistance, obstacleMask))
-                        continue; // Blocked by wall → cannot see
-                }
-
-                // Player is detectable!
-                lastKnownPosition = playerTransform.position;
-                lastSightTime = Time.time;
-                return true;
+                playerInRange = true;
+                break;
             }
         }
 
-        return false;
+        if (!playerInRange) return false;
+
+        Vector3 directionToPlayer = (playerTransform.position - detectionCenter).normalized;
+        float angle = Vector3.Angle(transform.forward, directionToPlayer);
+        if (angle > fieldOfViewAngle * 0.5f)
+            return false;
+
+        if (useLineOfSight)
+        {
+            Vector3 rayOrigin = detectionCenter;
+            float rayDistance = Vector3.Distance(rayOrigin, playerTransform.position);
+
+            // Debug ray in scene view for troubleshooting
+            Debug.DrawRay(rayOrigin, directionToPlayer * rayDistance, Color.red, 0.1f);
+
+            if (Physics.Raycast(rayOrigin, directionToPlayer, rayDistance, obstacleMask))
+                return false; // Blocked by obstacle
+        }
+
+        // Player is detectable!
+        lastKnownPosition = playerTransform.position;
+        lastSightTime = Time.time;
+        return true;
     }
 
     void HandleIdle()
