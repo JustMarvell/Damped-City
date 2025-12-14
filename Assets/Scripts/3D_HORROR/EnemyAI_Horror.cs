@@ -243,10 +243,6 @@ public class EnemyAI_Horror : MonoBehaviour
             }
         }
 
-
-        if (!navAgent.isOnNavMesh)
-            return;
-
         if (DetectPlayer() && !hasAttacked)
         {
             lastKnownPosition = playerTransform.position;
@@ -277,6 +273,7 @@ public class EnemyAI_Horror : MonoBehaviour
         {
             IS_SEEING_PLAYER = false;
             if (runAlert != null) runAlert.SetActive(false);
+            if (lookAlert != null) lookAlert.SetActive(false);
         }
     }
 
@@ -396,9 +393,12 @@ public class EnemyAI_Horror : MonoBehaviour
         if (playerCamera == null || enemyCollider == null)
             return false;
 
+        float distanceToAngel = Vector3.Distance(playerCamera.position, transform.position);
+        if (distanceToAngel > lineOfSightDistance)
+            return false;
+            
         // Direction from player camera to angel
         Vector3 dirToAngel = (transform.position - playerCamera.position).normalized;
-        float distanceToAngel = Vector3.Distance(playerCamera.position, transform.position);
 
         // Check if angel is WITHIN player's FOV cone (wider, more forgiving)
         float angleToAngel = Vector3.Angle(playerCamera.forward, dirToAngel);
