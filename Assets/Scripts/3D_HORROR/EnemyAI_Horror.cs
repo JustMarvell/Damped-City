@@ -46,6 +46,9 @@ public class EnemyAI_Horror : MonoBehaviour
     public LayerMask obstacleMask;
     public LayerMask playerMask;
 
+    [Header("Weeping")]
+    public float angelDirAngle = 0.95f;
+
     [Header("Rewspawn")]
     public Transform[] respawnPosition;
 
@@ -83,6 +86,8 @@ public class EnemyAI_Horror : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerCamera = Camera.main.transform;
+        enemyCollider = GetComponent<Collider>();
         enemyManager = EnemyManager.instance;
 
         onChaseCallback += enemyManager.OnEnemyChase;
@@ -377,7 +382,7 @@ public class EnemyAI_Horror : MonoBehaviour
             return false;
 
         Vector3 dirToAngel = (transform.position - playerCamera.position).normalized;
-        if (Vector3.Dot(playerCamera.forward, dirToAngel) < 0.95f)
+        if (Vector3.Dot(playerCamera.forward, dirToAngel) < angelDirAngle)
             return false;
 
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
