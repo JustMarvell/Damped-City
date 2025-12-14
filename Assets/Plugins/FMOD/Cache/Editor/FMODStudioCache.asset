@@ -541,7 +541,7 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639011789618293181
+  lastModified: 639012438073741959
   FileSizes:
   - Name: Desktop
     Value: 4398816
@@ -588,7 +588,7 @@ MonoBehaviour:
   Path: ../../../Documents/PG/pg_bank/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639012234041195231
+  lastModified: 639012438069641825
   FileSizes:
   - Name: Desktop
     Value: 7462176
@@ -902,7 +902,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 1519322480893761904}
   cacheVersion: 131856
-  cacheTime: 639012234041195231
+  cacheTime: 639012438073741959
   SerializableEventsDict:
   - key: event:/UI/Slider_Changed
     index: 0
@@ -972,6 +972,20 @@ MonoBehaviour:
     index: 32
   - key: event:/SFX/EnemySound_MutantZombie
     index: 33
+  - key: event:/Music/Atmosphere/Atmosphere_Rising_Loop
+    index: 34
+  - key: event:/AtmosphereQue/Cutscenes/GameRetryCutsceneBase
+    index: 35
+  - key: event:/Music/Level/LevelMusic
+    index: 36
+  - key: event:/AtmosphereQue/Cutscenes/GameWinCutsceneBase
+    index: 37
+  - key: event:/AtmosphereQue/Cutscenes/GameOverCutsceneBase
+    index: 38
+  - key: event:/AtmosphereQue/Cutscenes/StartingCutsceneBase
+    index: 39
+  - key: event:/Music/Atmosphere/Atmosphere_2
+    index: 40
 --- !u!114 &542122505716744159
 MonoBehaviour:
   m_ObjectHideFlags: 0

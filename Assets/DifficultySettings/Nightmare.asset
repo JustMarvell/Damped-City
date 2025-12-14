@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Nightmare
   m_EditorClassIdentifier: 
   name: Nightmare
-  enemyCount: 6
+  enemyCount: 8
   enemyPrefabs:
   - {fileID: 1224867411520477154, guid: c08cff8448282c6d3bac4200c0e933e1, type: 3}
   - {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
   - {fileID: 8953147329018350857, guid: ee91cd33d120cde568305f172467e805, type: 3}
   zombie_normalSpeed: 3.445
   zombie_sprintSpeed: 5.535
-  zombie_fieldOfViewAngle: 120
+  zombie_fieldOfViewAngle: 240
   zombie_lineOfSightDistance: 13.53
   zombie_maxWalkRadius: 33.25
   zombie_minIdleTime: 5
@@ -31,7 +31,7 @@ MonoBehaviour:
   zombie_navAgentAngularSpeed: 90
   skull_normalSpeed: 6.875
   skull_sprintSpeed: 11.07
-  skull_fieldOfViewAngle: 45
+  skull_fieldOfViewAngle: 90
   skull_lineOfSightDistance: 30.36
   skull_maxWalkRadius: 16.75
   skull_minIdleTime: 1

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   name: Normal
-  enemyCount: 4
+  enemyCount: 5
   enemyPrefabs:
   - {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
   - {fileID: 1224867411520477154, guid: c08cff8448282c6d3bac4200c0e933e1, type: 3}
   zombie_normalSpeed: 2.5
   zombie_sprintSpeed: 4
-  zombie_fieldOfViewAngle: 120
-  zombie_lineOfSightDistance: 8
+  zombie_fieldOfViewAngle: 240
+  zombie_lineOfSightDistance: 12
   zombie_maxWalkRadius: 20
   zombie_minIdleTime: 5
   zombie_maxIdleTime: 8
@@ -30,8 +30,8 @@ MonoBehaviour:
   zombie_navAgentAngularSpeed: 90
   skull_normalSpeed: 5
   skull_sprintSpeed: 8
-  skull_fieldOfViewAngle: 45
-  skull_lineOfSightDistance: 18
+  skull_fieldOfViewAngle: 90
+  skull_lineOfSightDistance: 25
   skull_maxWalkRadius: 10
   skull_minIdleTime: 1
   skull_maxIdleTime: 3

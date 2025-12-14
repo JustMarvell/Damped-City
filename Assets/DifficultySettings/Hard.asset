@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Hard
   m_EditorClassIdentifier: 
   name: Hard
-  enemyCount: 5
+  enemyCount: 6
   enemyPrefabs:
   - {fileID: 1224867411520477154, guid: c08cff8448282c6d3bac4200c0e933e1, type: 3}
   - {fileID: 3764209955449736013, guid: 6026c1eccd88969dfab3dd7d920e67db, type: 3}
   - {fileID: 8953147329018350857, guid: ee91cd33d120cde568305f172467e805, type: 3}
   zombie_normalSpeed: 2.812
   zombie_sprintSpeed: 4.613
-  zombie_fieldOfViewAngle: 120
-  zombie_lineOfSightDistance: 9.84
+  zombie_fieldOfViewAngle: 240
+  zombie_lineOfSightDistance: 12
   zombie_maxWalkRadius: 24
   zombie_minIdleTime: 6
   zombie_maxIdleTime: 9
@@ -31,8 +31,8 @@ MonoBehaviour:
   zombie_navAgentAngularSpeed: 90
   skull_normalSpeed: 5.625
   skull_sprintSpeed: 9.225
-  skull_fieldOfViewAngle: 45
-  skull_lineOfSightDistance: 22.08
+  skull_fieldOfViewAngle: 90
+  skull_lineOfSightDistance: 25
   skull_maxWalkRadius: 12
   skull_minIdleTime: 1
   skull_maxIdleTime: 3
